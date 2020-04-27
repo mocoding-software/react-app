@@ -1,0 +1,18 @@
+{
+  "name": "mocoding-react-app-monorepo",
+  "private": true,
+  "devDependencies": {    
+    "typescript": "^3.8.3"
+  },
+  "workspaces": [
+    "packages/*"    
+  ],
+  "dependencies": {
+    "@mocoding/react-app": "*"
+  },
+  "scripts": {
+    "build": "yarn workspace @mocoding/react-app build",
+    "example:basic:config": "moapp config ./examples/basic",
+    "example:basic:build": "moapp build ./examples/basic"
+  }
+}

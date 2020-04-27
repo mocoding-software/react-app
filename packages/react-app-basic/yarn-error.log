@@ -1,0 +1,54 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install --mutex network:42424 --non-interactive
+
+PATH: 
+  D:\Projects\github\mocoding-app\packages\react-app-basic\node_modules\.bin;D:\Projects\github\mocoding-app\packages\node_modules\.bin;D:\Projects\github\mocoding-app\node_modules\.bin;D:\Projects\github\node_modules\.bin;D:\Projects\node_modules\.bin;D:\node_modules\.bin;C:\Program Files\nodejs;D:\Projects\github\mocoding-app\node_modules\.bin;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WinMerge;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\DennisMiasoutov\AppData\Local\Microsoft\WindowsApps;C:\Users\DennisMiasoutov\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\DennisMiasoutov\.dotnet\tools;C:\Users\DennisMiasoutov\AppData\Local\Programs\Fiddler;C:\Users\DennisMiasoutov\AppData\Roaming\npm;C:\Users\DennisMiasoutov\AppData\Local\Yarn\bin;C:\Program Files\Docker;;C:\Users\DennisMiasoutov\AppData\Local\Programs\Azure Data Studio\bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.14.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@mocoding%2fapp-common: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66056:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140665:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141637:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141559:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1184:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+  	"name": "@mocoding/app-basic",
+  	"version": "0.0.0",
+  	"description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  	"keywords": [],
+  	"author": "Dennis Miasoutov <dennis.miasoutov@mocoding.com>",
+  	"license": "ISC",
+  	"main": "lib/mocoding-app-basic.js",
+  	"directories": {
+  		"lib": "lib",
+  		"test": "__tests__"
+  	},
+  	"files": [
+  		"lib"
+  	],
+  	"dependencies": {
+  		"@mocoding/app-common": "*"
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
