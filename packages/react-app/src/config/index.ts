@@ -1,2 +1,2 @@
 export * from "./create-configs";
-export * from "./settings";
+export * from "../cli/options";

@@ -2,7 +2,7 @@
 import * as Webpack from "webpack";
 import { RedirectResult, RenderCallback, RenderFuncProps, RenderHtmlResult } from "@mocoding/react-app-common";
 
-import { render } from "injected-bootstrap-module";
+import { render } from "injected-bootstrap-module/lib/render";
 
 interface ServerRenderStats {
   clientStats: Webpack.Stats;

@@ -3,13 +3,7 @@
 import program from "commander";
 import "./commands";
 
-program
-  .version("0.0.1")
-  .description("Mocoding React Web Application")
-  .option("-p, --production", "build for production")
-  .option("-d, --debug", "enable extra debug options")
-  .option("-a, --analyze", "enable bundle analyzer")
-  .option("--inspect-brk", "node debug");
+program.version("0.0.1").description("Mocoding React Web Application");
 
 program.parse(process.argv);
 

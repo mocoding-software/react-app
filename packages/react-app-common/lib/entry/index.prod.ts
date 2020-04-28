@@ -1,4 +1,3 @@
-// @ts-nocheck
-import * as AppModule from "injected-app-module";
+import { App } from "injected-app-entry";
 
-export default AppModule.App;
+export default App;
