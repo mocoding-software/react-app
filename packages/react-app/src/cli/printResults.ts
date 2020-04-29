@@ -1,16 +1,22 @@
 import chalk from "chalk";
 import * as path from "path";
-import webpack from "webpack";
+import { Stats } from "webpack";
 
 interface MultiStats {
-  stats: webpack.Stats[];
+  stats: Stats[];
+}
+
+interface TsError {
+  file: string;
+  message: string;
+  rawMessage: string;
 }
 
 export function printResults(
   err: Error,
   multiStats: MultiStats,
-  printAssets: boolean = true,
-) {
+  printAssets = true,
+): void {
   process.stdout.write("\n");
 
   if (printAssets) {
@@ -18,60 +24,38 @@ export function printResults(
     printFiles(multiStats.stats[1], "Server");
   }
 
+  const errors: TsError[] = multiStats.stats[0].compilation.errors.concat(
+    multiStats.stats[1].compilation.errors,
+  );
+  const warnings: TsError[] = multiStats.stats[0].compilation.warnings.concat(
+    multiStats.stats[1].compilation.warnings,
+  );
   // print only from server
-  printErrors(multiStats.stats[0]);
-  printErrors(multiStats.stats[1]);
-  const warnings = printWarnings(multiStats.stats[1]);
-  printSummary(multiStats.stats[1], warnings, "Build");
+  printWarnings(warnings);
+  printErrors(errors);
+  printSummary(errors, warnings, "Build");
   process.stdout.write("\n");
 }
 
-function printErrors(stats: webpack.Stats) {
-  const issues: any = stats.compilation.errors;
-  for (const issue of issues) {
+function printErrors(errors: TsError[]): void {
+  for (const issue of errors) {
     process.stdout.write(chalk.red(issue.message));
     process.stdout.write("\n");
   }
 }
-
-function printWarnings(stats: webpack.Stats): number {
-  const issues: any = stats.compilation.warnings;
-  let warningCount = 0;
-  for (const issue of issues) {
-    if (!issue.warning) {
-      // Disable webpack compain here.
-      // process.stdout.write(chalk.red(issue.error.toString()));
-      // process.stdout.write("\n");
-      // process.stdout.write(chalk.bold.cyan(issue.module.resource));
-      // process.stdout.write("\n");
-      // warningCount++;
-      continue;
-    }
-    const allWarnings: string = issue.warning.toString();
-    const warnings = allWarnings
-      .replace("Error: ", chalk.grey(""))
-      // tslint:disable-next-line: variable-name
-      .replace(/\[(\d+), (\d+)\]: (.+)/g, (_substring, start, end, message) => {
-        warningCount++;
-        const location = chalk.bold.cyanBright(
-          `${issue.module.resource}(${start},${end})`,
-        );
-        const entry = chalk.grey("[wtb]");
-        return chalk.yellow(
-          `${entry} WARNING in ${location}\n      ${message}`,
-        );
-      });
-    process.stdout.write(warnings);
+function printWarnings(warnings: TsError[]): void {
+  for (const issue of warnings) {
+    process.stdout.write(chalk.yellow(issue.message));
+    process.stdout.write("\n");
   }
-  return warningCount;
 }
 
-function printFiles(stats: webpack.Stats, name: string) {
+function printFiles(stats: Stats, name: string): void {
   const out = stats.compilation.outputOptions.path;
   const target = stats.compilation.outputOptions.libraryTarget;
   process.stdout.write(`${name} (${target}):\n`);
   const assets = Object.keys(stats.compilation.assets).filter(
-    _ => !_.endsWith("d.ts"),
+    (_) => !_.endsWith("d.ts"),
   );
   for (const asset of assets) {
     const webpackAsset: any = stats.compilation.assets[asset];
@@ -89,14 +73,14 @@ function printFiles(stats: webpack.Stats, name: string) {
 }
 
 function printSummary(
-  stats: webpack.Stats,
-  warningsCount: number,
+  errors: TsError[],
+  warnings: TsError[],
   name: string,
-) {
+): void {
   process.stdout.write(`========== ${chalk.bold(name)}: `);
-  printColoredStats(warningsCount, "Warning", chalk.yellow);
+  printColoredStats(warnings.length, "Warning", chalk.yellow);
   process.stdout.write(", ");
-  printColoredStats(stats.compilation.errors.length, "Error");
+  printColoredStats(errors.length, "Error");
   process.stdout.write(" ========== \n");
 }
 
@@ -104,7 +88,7 @@ function printColoredStats(
   stat: number,
   name: string,
   errorChulk: chalk.Chalk = chalk.red,
-) {
+): void {
   const type = stat > 0 ? errorChulk : chalk.green;
 
   process.stdout.write(type(`${stat} ${name}`));

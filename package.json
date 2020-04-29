@@ -1,19 +1,21 @@
 {
   "name": "mocoding-react-app-monorepo",
   "private": true,
-  "devDependencies": {    
+  "devDependencies": {
     "typescript": "^3.8.3"
   },
   "workspaces": [
-    "packages/*"    
+    "packages/*"
   ],
   "dependencies": {
     "@mocoding/react-app": "*"
   },
   "scripts": {
     "cli": "moapp",
-    "build": "yarn workspace @mocoding/react-app build",
-    "example:basic:config": "moapp config ./examples/basic",
-    "example:basic:build": "moapp build ./examples/basic"
-  }
+    "build": "yarn workspace @mocoding/react-app build"
+  },
+  "eslintConfig": {
+    "extends": "@mocoding/eslint-config"
+  },
+  "prettier": "@mocoding/eslint-config/prettier"
 }

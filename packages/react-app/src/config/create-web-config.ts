@@ -3,7 +3,7 @@ import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import * as webpack from "webpack";
-import { clientRules } from "./rules";
+import { typescript, css, sass, fonts, sassGlob, images, favicon } from "./rules";
 
 export function createWebConfig(
   tsConfigLocation: string,
@@ -15,6 +15,17 @@ export function createWebConfig(
     new MiniCssExtractPlugin({
       filename: isProd ? "[name].[contenthash:6].css" : "[name].css",
     }),
+  ];
+
+  const rules: webpack.RuleSetRule[] = [
+    typescript(tsConfigLocation),
+    // eslint,
+    css(isProd),
+    sass(isProd),
+    sassGlob,
+    fonts,
+    images,
+    favicon,
   ];
 
   if (!isProd) {
@@ -35,7 +46,7 @@ export function createWebConfig(
     devtool: isProd ? undefined : "cheap-module-eval-source-map",
     entry,
     mode: isProd ? "production" : "development",
-    module: { rules: clientRules(isProd) },
+    module: { rules },
     name: "client",
     optimization: {
       minimizer: [
@@ -76,7 +87,7 @@ export function createWebConfig(
     resolve: {
       alias: {},
       extensions: [".js", ".jsx", ".ts", ".tsx"],
-      plugins: [new TsconfigPathsPlugin({ configFile: tsConfigLocation })],
+      plugins: [new TsconfigPathsPlugin({ configFile: tsConfigLocation, logInfoToStdOut: true, logLevel: "ERROR" })],
     },
     stats: true,
   };

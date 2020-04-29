@@ -1,7 +1,7 @@
 import tsImportPluginFactory from "ts-import-plugin";
 import * as webpack from "webpack";
 
-export const typescript: webpack.Rule = {
+export const typescript: (configFile: string) => webpack.Rule = (configFile) => ({
   test: /\.(ts|tsx)?$/,
   use: {
     loader: "ts-loader",
@@ -16,6 +16,7 @@ export const typescript: webpack.Rule = {
       }),
       onlyCompileBundledFiles: true,
       transpileOnly: true,
+      configFile
     },
   },
-};
+});

@@ -1,30 +1,24 @@
 {
-  "name": "@mocoding/react-app-common",
+  "name": "@mocoding/eslint-config",
   "version": "0.0.0",
   "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
   "keywords": [],
   "author": "Dennis Miasoutov <dennis.miasoutov@mocoding.com>",
   "license": "ISC",
-  "main": "lib/index.ts",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
+  "main": "eslint.js",
   "files": [
-    "lib",
-    "typings.d.ts"
+    "eslint.js",
+    "prettier.js"
   ],
-  "scripts": {
-    "build": "echo test",
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "dependencies": {
-    "@hot-loader/react-dom": "^16.13.0",
-    "@types/react-dom": "^16.9.6",
-    "@types/react": "^16.9.34",
-    "react-dom": "^16.13.1",
-    "react-helmet-async": "^1.0.5",
-    "react-hot-loader": "^4.12.20",
-    "react": "^16.13.1"
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-only-warn": "^1.0.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint": "^6.8.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
   }
 }

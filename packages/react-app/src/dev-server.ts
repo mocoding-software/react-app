@@ -1,4 +1,3 @@
-/// <reference path="../../react-app-common/typings.d.ts" />
 import * as Webpack from "webpack";
 import { RedirectResult, RenderCallback, RenderFuncProps, RenderHtmlResult } from "@mocoding/react-app-common";
 

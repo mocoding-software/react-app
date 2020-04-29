@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "strict": true
+  },
+  "include": ["lib/**/*", "../react-app-common/typings.d.ts"]
+}

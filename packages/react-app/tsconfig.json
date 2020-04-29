@@ -1,8 +1,19 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "noEmit": false,
+    "module": "CommonJS",
+    "target": "ES2018",
+    "strict": false,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "jsx": "react",
     "outDir": "./lib"
   },
-  "include": ["./src"]
+  "include": ["./src", "../react-app-common/typings.d.ts"]
 }

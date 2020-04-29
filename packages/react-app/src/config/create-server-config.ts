@@ -1,7 +1,7 @@
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import * as webpack from "webpack";
-import { serverRules } from "./rules";
+import { typescript, noCss, noSass, noFonts, noImages, noFavicon } from "./rules";
 
 export function createServerConfig(
   tsConfigLocation: string,
@@ -9,11 +9,20 @@ export function createServerConfig(
   outputPath: string,
   isProduction: boolean,
 ): webpack.Configuration {
+  const rules: webpack.RuleSetRule[] = [
+    typescript(tsConfigLocation),
+    // eslint,
+    noCss,
+    noSass,
+    noFonts,
+    noImages,
+    noFavicon,
+  ];
   return {
     devtool: isProduction ? "source-map" : "cheap-module-eval-source-map",
     entry,
     mode: isProduction ? "production" : "development",
-    module: { rules: serverRules },
+    module: { rules },
     name: "server",
     optimization: {
       minimize: false,
@@ -29,13 +38,15 @@ export function createServerConfig(
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
+        eslint: true,
         tsconfig: tsConfigLocation,
+        measureCompilationTime: false,
       }),
     ],
     resolve: {
       alias: {},
       extensions: [".js", ".jsx", ".ts", ".tsx"],
-      plugins: [new TsconfigPathsPlugin({ configFile: tsConfigLocation })],
+      plugins: [new TsconfigPathsPlugin({ configFile: tsConfigLocation, logInfoToStdOut: true, logLevel: "ERROR" })],
     },
     stats: false,
     target: "node",

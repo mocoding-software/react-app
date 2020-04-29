@@ -1,18 +1,8 @@
 {
+  "extends": "@mocoding/react-app-common/tsconfig.base.json",
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2018",
-    "strict": false,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "declaration": true,
-    "removeComments": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "jsx": "react",    
+    "baseUrl": "."
   },
-  "include": ["packages/**/*"]
+  "include": ["examples/**/*"],
+  "exclude": ["packages/**/*"]
 }

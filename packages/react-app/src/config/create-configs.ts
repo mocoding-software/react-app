@@ -1,9 +1,15 @@
 import * as path from "path";
+import * as fs from "fs";
 import webpack from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { createWebConfig } from "./create-web-config";
 import { createServerConfig } from "./create-server-config";
 import { Options } from "../cli/options";
+import chalk from "chalk";
+
+// function print(message: string){
+
+// }
 
 export function createConfigs(settings: Options): webpack.Configuration[] {
   // Defaults:
@@ -18,12 +24,21 @@ export function createConfigs(settings: Options): webpack.Configuration[] {
   const appRoot = path.join(projectRootPath, settings.appRoot);
   const outputPath = path.join(projectRootPath, settings.outputClientPath);
   const outputPathServer = path.join(projectRootPath, settings.outputServerPath);
-  const tsConfigLocation = path.join(__dirname, "../../../react-app-common/tsconfig.base.json");
+  const defaultTsConfigLocation = path.join(__dirname, "../../../react-app-common/tsconfig.base.json");
+  const appTsConfigLocation = path.join(projectRootPath, "tsconfig.json");
+  const tsConfigLocation = fs.existsSync(appTsConfigLocation) ? appTsConfigLocation : defaultTsConfigLocation;
   const clientEntryPoint = "@mocoding/react-app-common/lib/client";
   const serverEntryPoint = "@mocoding/react-app-common/lib/server";
   const devServerEntryPoint = path.join(__dirname, "../dev-server");
   const devEntries = settings.production ? [] : ["webpack-hot-middleware/client", "react-hot-loader/patch"];
   const hmrEntry = `@mocoding/react-app-common/lib/entry/index.${settings.production ? "prod" : "dev"}.ts`;
+
+  delete process.env.TS_NODE_PROJECT;
+
+  process.stdout.write(`${chalk.yellow("Application Root    :")} ${appRoot}\n`);
+  process.stdout.write(`${chalk.yellow("Output Path (client):")} ${outputPath}\n`);
+  process.stdout.write(`${chalk.yellow("Output Path (server):")} ${outputPathServer}\n`);
+  process.stdout.write(`${chalk.yellow("Typescript Config   :")} ${tsConfigLocation}\n`);
 
   // client & server
   const client: webpack.Entry = {
@@ -36,7 +51,6 @@ export function createConfigs(settings: Options): webpack.Configuration[] {
 
   // Creating configs
   let clientConfig = createWebConfig(tsConfigLocation, client, outputPath, settings.production);
-
   let serverConfig = createServerConfig(tsConfigLocation, server, outputPathServer, settings.production);
 
   // Adding default plugin
