@@ -5,7 +5,7 @@
   "keywords": [],
   "author": "Dennis Miasoutov <dennis.miasoutov@mocoding.com>",
   "license": "ISC",
-  "main": "lib/mocoding-app-router-redux.js",
+  "main": "lib/index.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -14,7 +14,19 @@
     "lib"
   ],
   "scripts": {
-    "build": "echo",
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@mocoding/react-app-common": "*",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux-logger": "^3.0.7",
+    "@types/redux": "^3.6.0",
+    "@types/webpack-env": "^1.15.2",
+    "connected-react-router": "^6.8.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux-logger": "^3.0.6",
+    "redux": "^4.0.5"
   }
 }

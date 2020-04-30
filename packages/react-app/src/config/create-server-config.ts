@@ -11,7 +11,6 @@ export function createServerConfig(
 ): webpack.Configuration {
   const rules: webpack.RuleSetRule[] = [
     typescript(tsConfigLocation),
-    // eslint,
     noCss,
     noSass,
     noFonts,
@@ -45,8 +44,14 @@ export function createServerConfig(
     ],
     resolve: {
       alias: {},
-      extensions: [".js", ".jsx", ".ts", ".tsx"],
-      plugins: [new TsconfigPathsPlugin({ configFile: tsConfigLocation, logInfoToStdOut: true, logLevel: "ERROR" })],
+      extensions: [".js", ".jsx", ".ts", ".tsx", isProduction ? ".prod.ts" : ".dev.ts"],
+      plugins: [
+        new TsconfigPathsPlugin({
+          configFile: tsConfigLocation,
+          logInfoToStdOut: true,
+          logLevel: "ERROR",
+        }),
+      ],
     },
     stats: false,
     target: "node",

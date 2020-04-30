@@ -14,6 +14,7 @@ declare module "*.gif" {
 }
 
 declare module "injected-bootstrap-module" {
+  import { AppProps, ContextFactoryFunc } from "@mocoding/react-app-common";
   const createContext: ContextFactoryFunc;
   const App: React.ComponentType<AppProps>;
 }
@@ -21,14 +22,21 @@ declare module "injected-bootstrap-module" {
 // TODO: Once Node 13.2+ is there this can be changed to "injected-bootstrap-module/render"
 // I don't like specific assumptions that bootstrap module contains lib folder.
 declare module "injected-bootstrap-module/lib/render" {
+  import { RenderFunc } from "@mocoding/react-app-common";
+  const render: RenderFunc;
+}
+
+declare module "injected-bootstrap-module/lib/middlewares" {
+  import { RenderFunc } from "@mocoding/react-app-common";
   const render: RenderFunc;
 }
 
 declare module "injected-app-entry" {
+  import { AppProps } from "@mocoding/react-app-common";
   export const App: React.ComponentType<AppProps>;
 }
 
-declare module "injected-hmr-entry" {
-  const EntryPoint: React.ComponentType<AppProps>;
-  export = EntryPoint;
+declare module "@mocoding/react-app-common/lib/entry" {
+  const HmrProxyEntryModule: React.ComponentType;
+  export = HmrProxyEntryModule;
 }

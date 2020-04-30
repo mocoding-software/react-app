@@ -7,7 +7,7 @@ export interface Options {
   outputClientPath: string;
   outputServerPath: string;
   bootstrapModule: string;
-  appRoot: string;
+  appEntry: string;
   // devApiUrl: string;
 }
 
@@ -17,8 +17,20 @@ export function registerCommand(command: string, description: string): program.C
     .description(description)
     .option("-p, --production", "build for production", false)
     .option("-a, --analyze", "enable bundle analyzer", false)
-    .option("-r, --appRoot [path]", "specify application root", ".")
-    .option("-m, --bootstrapModule [path]", "sets bootstrap module", "@mocoding/react-app-basic")
-    .option("-oc, --outputClientPath [path]", "sets output path for client files", "./wwwroot")
-    .option("-os, --outputServerPath [path]", "sets output path for server files. module", "./wwwroot_node");
+    .option("-e, --appEntry [path]", "specify application root", ".")
+    .option(
+      "-b, --bootstrapModule [path]",
+      "sets bootstrap module",
+      "@mocoding/react-app-basic",
+    )
+    .option(
+      "-oc, --outputClientPath [path]",
+      "sets output path for client files",
+      "./wwwroot",
+    )
+    .option(
+      "-os, --outputServerPath [path]",
+      "sets output path for server files. module",
+      "./wwwroot_node",
+    );
 }

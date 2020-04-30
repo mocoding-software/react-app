@@ -1,17 +1,19 @@
 import * as path from "path";
 import * as fs from "fs";
-import webpack from "webpack";
+import { Configuration, Entry } from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { createWebConfig } from "./create-web-config";
 import { createServerConfig } from "./create-server-config";
 import { Options } from "../cli/options";
 import chalk from "chalk";
 
-// function print(message: string){
+function inject(configs: Configuration[], module: string, alias: string): void {
+  for (const item of configs) {
+    item.resolve.alias[module] = alias;
+  }
+}
 
-// }
-
-export function createConfigs(settings: Options): webpack.Configuration[] {
+export function createConfigs(settings: Options): Configuration[] {
   // Defaults:
   // projectRoot - root of the project (project.json location)
   // appRoot - application main directory
@@ -19,39 +21,56 @@ export function createConfigs(settings: Options): webpack.Configuration[] {
   // outputPathServer - build directory
   // clientEntryPoint - entry point for client (browser) side
   // serverEntryPoint - entry point for server side (development only).
-  // ssrEntryPoint - entry point for render function.
   const projectRootPath = process.cwd();
-  const appRoot = path.join(projectRootPath, settings.appRoot);
+  const appRoot = path.join(projectRootPath, settings.appEntry);
+  const bootstrapModule = settings.bootstrapModule;
   const outputPath = path.join(projectRootPath, settings.outputClientPath);
   const outputPathServer = path.join(projectRootPath, settings.outputServerPath);
-  const defaultTsConfigLocation = path.join(__dirname, "../../../react-app-common/tsconfig.base.json");
+  const defaultTsConfigLocation = path.join(
+    __dirname,
+    "../../../react-app-common/tsconfig.base.json",
+  );
   const appTsConfigLocation = path.join(projectRootPath, "tsconfig.json");
-  const tsConfigLocation = fs.existsSync(appTsConfigLocation) ? appTsConfigLocation : defaultTsConfigLocation;
+  const tsConfigLocation = fs.existsSync(appTsConfigLocation)
+    ? appTsConfigLocation
+    : defaultTsConfigLocation;
   const clientEntryPoint = "@mocoding/react-app-common/lib/client";
   const serverEntryPoint = "@mocoding/react-app-common/lib/server";
   const devServerEntryPoint = path.join(__dirname, "../dev-server");
-  const devEntries = settings.production ? [] : ["webpack-hot-middleware/client", "react-hot-loader/patch"];
-  const hmrEntry = `@mocoding/react-app-common/lib/entry/index.${settings.production ? "prod" : "dev"}.ts`;
+  const devEntries = settings.production
+    ? []
+    : ["webpack-hot-middleware/client", "react-hot-loader/patch"];
 
   delete process.env.TS_NODE_PROJECT;
 
   process.stdout.write(`${chalk.yellow("Application Root    :")} ${appRoot}\n`);
+  process.stdout.write(`${chalk.yellow("Bootstrap Module    :")} ${bootstrapModule}\n`);
   process.stdout.write(`${chalk.yellow("Output Path (client):")} ${outputPath}\n`);
   process.stdout.write(`${chalk.yellow("Output Path (server):")} ${outputPathServer}\n`);
   process.stdout.write(`${chalk.yellow("Typescript Config   :")} ${tsConfigLocation}\n`);
 
   // client & server
-  const client: webpack.Entry = {
+  const client: Entry = {
     index: [...devEntries, clientEntryPoint],
   };
 
-  const server: webpack.Entry = {
+  const server: Entry = {
     server: settings.production ? serverEntryPoint : devServerEntryPoint,
   };
 
   // Creating configs
-  let clientConfig = createWebConfig(tsConfigLocation, client, outputPath, settings.production);
-  let serverConfig = createServerConfig(tsConfigLocation, server, outputPathServer, settings.production);
+  const clientConfig = createWebConfig(
+    tsConfigLocation,
+    client,
+    outputPath,
+    settings.production,
+  );
+  const serverConfig = createServerConfig(
+    tsConfigLocation,
+    server,
+    outputPathServer,
+    settings.production,
+  );
 
   // Adding default plugin
   // const definePlugin = new webpack.DefinePlugin({
@@ -78,17 +97,8 @@ export function createConfigs(settings: Options): webpack.Configuration[] {
   }
 
   // entry points
-  inject(configs, "injected-bootstrap-module", settings.bootstrapModule);
-  inject(configs, "injected-hmr-entry", hmrEntry);
+  inject(configs, "injected-bootstrap-module", bootstrapModule);
   inject(configs, "injected-app-entry", appRoot);
-  // inject default middlewares
-  // inject(configs, "injected-default-middlewares", settings.production ? "./middlewares/prod" : "./middlewares/dev");
 
   return configs;
-}
-
-function inject(configs: webpack.Configuration[], module: string, alias: string) {
-  for (const item of configs) {
-    item.resolve.alias[module] = alias;
-  }
 }

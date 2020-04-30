@@ -2,6 +2,7 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 
 import { connect } from "react-redux";
+import { ApplicationState } from "./store";
 
 interface AppProps {
   counter: number;
@@ -11,7 +12,7 @@ interface AppDispatch {
   decrement: () => void;
 }
 
-class AppInternal extends React.Component<AppProps & AppDispatch, any> {
+class AppInternal extends React.Component<AppProps & AppDispatch, ApplicationState> {
   public render(): JSX.Element {
     return (
       <div>
@@ -28,13 +29,17 @@ class AppInternal extends React.Component<AppProps & AppDispatch, any> {
   }
 }
 
-const App = connect<AppProps, AppDispatch, {}, any>(
-  state => ({
+const App = connect<AppProps, AppDispatch, {}, ApplicationState>(
+  (state) => ({
     counter: state.counter,
   }),
-  dispatch => ({
-    decrement: () => dispatch({ type: "DECREMENT" }),
-    increment: () => dispatch({ type: "INCREMENT" }),
+  (dispatch) => ({
+    decrement: (): void => {
+      dispatch({ type: "DECREMENT" });
+    },
+    increment: (): void => {
+      dispatch({ type: "INCREMENT" });
+    },
   }),
 )(AppInternal);
 

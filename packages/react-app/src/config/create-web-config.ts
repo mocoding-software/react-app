@@ -9,26 +9,25 @@ export function createWebConfig(
   tsConfigLocation: string,
   entry: webpack.Entry,
   outputPath: string,
-  isProd: boolean,
+  isProduction: boolean,
 ): webpack.Configuration {
   const plugins = [
     new MiniCssExtractPlugin({
-      filename: isProd ? "[name].[contenthash:6].css" : "[name].css",
+      filename: isProduction ? "[name].[contenthash:6].css" : "[name].css",
     }),
   ];
 
   const rules: webpack.RuleSetRule[] = [
     typescript(tsConfigLocation),
-    // eslint,
-    css(isProd),
-    sass(isProd),
+    css(isProduction),
+    sass(isProduction),
     sassGlob,
     fonts,
     images,
     favicon,
   ];
 
-  if (!isProd) {
+  if (!isProduction) {
     plugins.push(new webpack.HotModuleReplacementPlugin({ quiet: true }));
   } else {
     plugins.push(
@@ -43,9 +42,9 @@ export function createWebConfig(
   }
 
   return {
-    devtool: isProd ? undefined : "cheap-module-eval-source-map",
+    devtool: isProduction ? undefined : "cheap-module-eval-source-map",
     entry,
-    mode: isProd ? "production" : "development",
+    mode: isProduction ? "production" : "development",
     module: { rules },
     name: "client",
     optimization: {
@@ -76,7 +75,7 @@ export function createWebConfig(
       },
     },
     output: {
-      filename: isProd ? "[name].[contenthash:6].js" : "[name].js",
+      filename: isProduction ? "[name].[contenthash:6].js" : "[name].js",
       library: "[name]",
       libraryTarget: "umd",
       path: outputPath,
@@ -86,8 +85,14 @@ export function createWebConfig(
     plugins,
     resolve: {
       alias: {},
-      extensions: [".js", ".jsx", ".ts", ".tsx"],
-      plugins: [new TsconfigPathsPlugin({ configFile: tsConfigLocation, logInfoToStdOut: true, logLevel: "ERROR" })],
+      extensions: [".js", ".jsx", ".ts", ".tsx", isProduction ? ".prod.ts" : ".dev.ts"],
+      plugins: [
+        new TsconfigPathsPlugin({
+          configFile: tsConfigLocation,
+          logInfoToStdOut: true,
+          logLevel: "ERROR",
+        }),
+      ],
     },
     stats: true,
   };

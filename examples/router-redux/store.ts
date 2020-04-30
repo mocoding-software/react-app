@@ -1,12 +1,12 @@
 import { RouterState } from "connected-react-router";
 import * as Redux from "redux";
 
-interface ApplicationState {
+export interface ApplicationState {
   router?: RouterState;
   counter: number;
 }
 
-const counterReducer = (state = 1, action: Redux.Action) => {
+const counterReducer = (state = 1, action: Redux.Action): number => {
   switch (action.type) {
     case "INCREMENT":
       return state + 1;
