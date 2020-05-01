@@ -21,12 +21,12 @@ declare module "injected-bootstrap-module" {
 
 // TODO: Once Node 13.2+ is there this can be changed to "injected-bootstrap-module/render"
 // I don't like specific assumptions that bootstrap module contains lib folder.
-declare module "injected-bootstrap-module/lib/render" {
+declare module "injected-bootstrap-module/render" {
   import { RenderFunc } from "@mocoding/react-app-common";
   const render: RenderFunc;
 }
 
-declare module "injected-bootstrap-module/lib/middlewares" {
+declare module "injected-bootstrap-module/middlewares" {
   import { RenderFunc } from "@mocoding/react-app-common";
   const render: RenderFunc;
 }
@@ -36,7 +36,7 @@ declare module "injected-app-entry" {
   export const App: React.ComponentType<AppProps>;
 }
 
-declare module "@mocoding/react-app-common/lib/entry" {
+declare module "@mocoding/react-app-common/entry" {
   const HmrProxyEntryModule: React.ComponentType;
   export = HmrProxyEntryModule;
 }

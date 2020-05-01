@@ -1,9 +1,9 @@
 import { RouterState } from "connected-react-router";
 import { addTask, fetch } from "domain-task";
 import * as Redux from "redux";
-import thunk from "redux-thunk";
+import thunk, { ThunkAction } from "redux-thunk";
 
-interface ApplicationState {
+export interface ApplicationState {
   router?: RouterState;
   stars?: number;
 }
@@ -12,10 +12,7 @@ interface StatsAction extends Redux.Action<string> {
   stats?: number;
 }
 
-const starsReducer = (
-  state: number | null = null,
-  action: StatsAction,
-): any => {
+const starsReducer = (state: number | null = null, action: StatsAction): any => {
   switch (action.type) {
     case "LOAD_STARS":
       return action.stats;
@@ -24,15 +21,20 @@ const starsReducer = (
   }
 };
 
-export function fetchStarsAction() {
-  return (dispatch: Redux.Dispatch) => {
+export function fetchStarsAction(): ThunkAction<
+  void,
+  ApplicationState,
+  unknown,
+  Redux.Action
+> {
+  return (dispatch: Redux.Dispatch): void => {
     const url =
       "https://api.github.com/repos/mocoding-software/webpack-typescript-builder";
     // Promise is added because there is a setTimeout
     const task = new Promise((resolve, reject) =>
       fetch(url)
-        .then(response => response.json())
-        .then(data =>
+        .then((response) => response.json())
+        .then((data) =>
           setTimeout(() => {
             dispatch({
               stats: data.stargazers_count,

@@ -2,7 +2,8 @@
   "name": "mocoding-react-app-monorepo",
   "private": true,
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "redux-thunk": "^2.3.0"
   },
   "workspaces": [
     "packages/*"

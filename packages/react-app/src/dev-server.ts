@@ -1,7 +1,12 @@
 import * as Webpack from "webpack";
-import { RedirectResult, RenderCallback, RenderFuncProps, RenderHtmlResult } from "@mocoding/react-app-common";
+import {
+  RedirectResult,
+  RenderCallback,
+  RenderFuncProps,
+  RenderHtmlResult,
+} from "@mocoding/react-app-common";
 
-import { render } from "injected-bootstrap-module/lib/render";
+import { render } from "injected-bootstrap-module/render";
 
 interface ServerRenderStats {
   clientStats: Webpack.Stats;
@@ -10,8 +15,9 @@ interface ServerRenderStats {
 function serverRenderer(stats: ServerRenderStats) {
   return (req: any, res: any, next: any) => {
     process.stdout.write(`Request ${req.originalUrl}\n`);
-    const assets = res.locals.webpackStats.stats[0].toJson().assetsByChunkName;
-    const assetsUrls: string[] = [].concat.apply([], Object.values(assets));
+    const jsonStats = res.locals.webpackStats.stats[0].toJson();
+    const assets = jsonStats.assetsByChunkName;
+    const assetsUrls: string[] = [].concat(...Object.values(assets));
     const defaultApiUrl = `${req.protocol}://${req.hostname}`;
     const apiUrl = process.env.API_URL;
     const baseUrl = typeof apiUrl !== "undefined" ? apiUrl : defaultApiUrl;

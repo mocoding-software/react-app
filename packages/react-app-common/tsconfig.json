@@ -5,5 +5,5 @@
     "noEmit": true,
     "strict": true
   },
-  "include": ["lib/**/*", "typings.d.ts"]
+  "include": ["**/*", "typings.d.ts", "client.tsx", "server.ts"]
 }

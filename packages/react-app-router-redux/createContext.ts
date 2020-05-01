@@ -5,7 +5,7 @@ import * as Redux from "redux";
 import { Context } from "@mocoding/react-app-common";
 
 import { middlewares, reducers } from "injected-app-entry/store";
-import devMiddlewares from "@mocoding/react-app-router-redux/lib/middlewares";
+import devMiddlewares from "@mocoding/react-app-router-redux/middlewares";
 
 export interface ReduxRouterState {
   // Allows any extra properties to be defined in an action.

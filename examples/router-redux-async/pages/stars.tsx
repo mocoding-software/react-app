@@ -2,7 +2,7 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 
 import { connect } from "react-redux";
-import { fetchStarsAction } from "../store";
+import { ApplicationState, fetchStarsAction } from "../store";
 
 interface AppProps {
   stars?: number;
@@ -34,12 +34,14 @@ class StarsPageInternal extends React.Component<AppProps & AppDispatch> {
   }
 }
 
-const StarsPage = connect<AppProps, AppDispatch, {}, any>(
-  state => ({
+const StarsPage = connect<AppProps, AppDispatch, {}, ApplicationState>(
+  (state) => ({
     stars: state.stars,
   }),
-  dispatch => ({
-    loadData: () => dispatch(fetchStarsAction() as any),
+  (dispatch) => ({
+    loadData: (): void => {
+      dispatch(fetchStarsAction() as any);
+    },
   }),
 )(StarsPageInternal);
 

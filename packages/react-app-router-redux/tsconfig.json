@@ -5,5 +5,5 @@
     "noEmit": true,
     "strict": true
   },
-  "include": ["lib/**/*", "./typings.d.ts", "../react-app-common/typings.d.ts"]
+  "include": ["lib/**/*", "./typings.d.ts", "../react-app-common/typings.d.ts", "createContext.ts", "index.ts", "app.tsx", "render.tsx", "middlewares"]
 }

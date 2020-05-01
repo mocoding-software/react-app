@@ -5,5 +5,5 @@
     "noEmit": true,
     "strict": true
   },
-  "include": ["lib/**/*", "../react-app-common/typings.d.ts"]
+  "include": ["**/*", "../react-app-common/typings.d.ts"]
 }

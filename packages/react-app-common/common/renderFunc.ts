@@ -11,10 +11,7 @@ export interface InlineScript {
   script: string;
 }
 
-export type RenderFunc = (
-  callback: RenderCallback,
-  props: RenderFuncProps,
-) => void;
+export type RenderFunc = (callback: RenderCallback, props: RenderFuncProps) => void;
 
 export type RenderCallback = (error?: Error, result?: RenderResult) => void;
 

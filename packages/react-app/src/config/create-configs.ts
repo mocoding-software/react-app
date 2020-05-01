@@ -34,8 +34,8 @@ export function createConfigs(settings: Options): Configuration[] {
   const tsConfigLocation = fs.existsSync(appTsConfigLocation)
     ? appTsConfigLocation
     : defaultTsConfigLocation;
-  const clientEntryPoint = "@mocoding/react-app-common/lib/client";
-  const serverEntryPoint = "@mocoding/react-app-common/lib/server";
+  const clientEntryPoint = "@mocoding/react-app-common/client";
+  const serverEntryPoint = "@mocoding/react-app-common/server";
   const devServerEntryPoint = path.join(__dirname, "../dev-server");
   const devEntries = settings.production
     ? []
@@ -83,6 +83,11 @@ export function createConfigs(settings: Options): Configuration[] {
 
   // clientConfig.plugins?.push(definePlugin);
   // serverConfig.plugins?.push(definePlugin);
+
+  // replace domain task alias to avoid unnecessary dependencies on the client
+  const clientDomainTask =
+    "@mocoding/react-app-router-redux-async/client-safe-domain-task";
+  clientConfig.resolve.alias["domain-task"] = clientDomainTask;
 
   if (settings.analyze) {
     clientConfig.plugins.push(new BundleAnalyzerPlugin({ analyzerHost: "0.0.0.0" }));

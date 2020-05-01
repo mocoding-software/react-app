@@ -1,4 +1,4 @@
-declare module "@mocoding/react-app-router-redux/lib/middlewares" {
+declare module "@mocoding/react-app-router-redux/middlewares" {
   import { Middleware } from "redux";
   const middlewares: Middleware[];
   export default middlewares;

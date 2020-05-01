@@ -3,13 +3,14 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 // ../../app/common -> "webpack-typescript-builder/app/common"
 // ../../app/components -> "webpack-typescript-builder/app/components"
-import { RenderCallback, RenderFuncProps } from "../../app/common";
-import { Html, HtmlProps } from "../../app/components";
+import {
+  Html,
+  HtmlProps,
+  RenderCallback,
+  RenderFuncProps,
+} from "@mocoding/react-app-common";
 
-export default function render(
-  callback: RenderCallback,
-  props: RenderFuncProps,
-): void {
+export default function render(callback: RenderCallback, props: RenderFuncProps): void {
   try {
     const htmlProps: HtmlProps = {
       assets: props.assets,

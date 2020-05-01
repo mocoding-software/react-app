@@ -6,7 +6,7 @@ export interface HeadProps {
 }
 
 export class Head extends React.Component<HeadProps> {
-  public render() {
+  public render(): React.ReactNode {
     const { inlineScripts, stylesheets: cssStyles } = this.props;
 
     const renderStyles = cssStyles.map((styleRef, i) => (
