@@ -33,22 +33,22 @@ stages:
               ProjectDirectory: $(Build.SourcesDirectory)
           - template: pack-as-is-template.yml
             parameters:
-              packages: $(eslintConfig)
+              package: $(eslintConfig)
           - template: build-and-pack-template.yml
             parameters:
-              packages: $(reactApp)
+              package: $(reactApp)
           - template: pack-as-is-template.yml
             parameters:
-              packages: $(reactAppBasic)
+              package: $(reactAppBasic)
           - template: pack-as-is-template.yml
             parameters:
-              packages: $(reactAppCommon)
+              package: $(reactAppCommon)
           - template: pack-as-is-template.yml
             parameters:
-              packages: $(reactAppRouterRedux)
+              package: $(reactAppRouterRedux)
           - template: pack-as-is-template.yml
             parameters:
-              packages: $(reactAppRouterReduxAsync)
+              package: $(reactAppRouterReduxAsync)
   # - stage: Deploy
   #   dependsOn: Build
   #   condition: and(succeeded(), contains(variables['Build.Reason'], 'PullRequest'))
