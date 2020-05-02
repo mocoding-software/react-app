@@ -31,22 +31,22 @@ stages:
             displayName: "Install"
             inputs:
               ProjectDirectory: $(Build.SourcesDirectory)
-          - template: pack-as-is-template.yml
+          - template: pack-template.yml
             parameters:
               package: $(eslintConfig)
-          - template: build-and-pack-template.yml
+          - template: pack-template.yml
             parameters:
               package: $(reactApp)
-          - template: pack-as-is-template.yml
+          - template: pack-template.yml
             parameters:
               package: $(reactAppBasic)
-          - template: pack-as-is-template.yml
+          - template: pack-template.yml
             parameters:
               package: $(reactAppCommon)
-          - template: pack-as-is-template.yml
+          - template: pack-template.yml
             parameters:
               package: $(reactAppRouterRedux)
-          - template: pack-as-is-template.yml
+          - template: pack-template.yml
             parameters:
               package: $(reactAppRouterReduxAsync)
   # - stage: Deploy

@@ -1,22 +1,22 @@
-# File: pack-as-is-template.yml
+# File: build-and-pack-template.yml
 parameters:
   - name: package
     type: string
     default: ""
 steps:
   - task: Yarn@3
-    displayName: "Update package.json version for ${{ parameters.package }}"
+    displayName: "${{ parameters.package }} - Update version"
     inputs:
       projectDirectory: "$(Build.SourcesDirectory)/packages/${{ parameters.package }}"
       arguments: "version --new-version $(Build.BuildNumber) --no-git-tag-version"
   - task: Yarn@3
-    displayName: "Pack ${{ parameters.package }}"
+    displayName: "${{ parameters.package }} - Pack"
     condition:
     inputs:
-      arguments: "pack --filename $(Build.StagingDirectory)/${{ parameters.package }}-${Build.BuilderNumber}.tgz"
+      arguments: "pack --filename $(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuilderNumber).tgz"
       projectDirectory: "$(Build.SourcesDirectory)/packages/${{ parameters.package }}"
   - task: PublishBuildArtifacts@1
-    displayName: "Publish ${{ parameters.package }}"
+    displayName: "${{ parameters.package }} - Publish ${{ parameters.package }}"
     inputs:
-      PathtoPublish: "$(Build.StagingDirectory)/${{ parameters.package }}-${Build.BuilderNumber}.tgz"
+      PathtoPublish: "$(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuilderNumber).tgz"
       ArtifactName: npm-${{ parameters.package }}
