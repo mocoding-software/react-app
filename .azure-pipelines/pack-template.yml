@@ -19,4 +19,4 @@ steps:
     displayName: "${{ parameters.package }} - Publish"
     inputs:
       PathtoPublish: "$(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuildNumber).tgz"
-      ArtifactName: npm
+      ArtifactName: npm-${{ parameters.package }}

@@ -51,7 +51,7 @@ stages:
               package: $(reactAppRouterReduxAsync)
   - stage: Deploy
     dependsOn: Build
-    # condition: and(succeeded(), contains(variables['Build.Reason'], 'PullRequest'))
+    condition: and(succeeded(), contains(variables['Build.Reason'], 'PullRequest'))
     pool:
       vmImage: "ubuntu-18.04"
     jobs:
