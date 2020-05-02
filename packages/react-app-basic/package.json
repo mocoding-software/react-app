@@ -1,16 +1,21 @@
 {
   "name": "@mocoding/react-app-basic",
-  "version": "0.0.0",
-  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
-  "keywords": [],
-  "author": "Dennis Miasoutov <dennis.miasoutov@mocoding.com>",
-  "license": "ISC",
+  "version": "1.0.0",
+  "description": "Basic Bootstrap Module for React Web Application. See @mocoding/react-app for more details.",
+  "repository": "https://github.com/mocoding-software/react-app/tree/master/packages/react-app-basic",
+  "bugs": {
+    "url": "https://github.com/mocoding-software/react-app/issues",
+    "email": "social@mocoding.com"
+  },
+  "homepage": "https://github.com/mocoding-software/react-app#readme",
+  "author": "MOCODING, LLC",
+  "license": "MIT",
   "main": "index.ts",
   "scripts": {
     "build": "echo",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@mocoding/react-app-common": "*"
+    "@mocoding/react-app-common": "^1.0.0"
   }
 }

@@ -49,25 +49,36 @@ stages:
           - template: pack-template.yml
             parameters:
               package: $(reactAppRouterReduxAsync)
-  # - stage: Deploy
-  #   dependsOn: Build
-  #   condition: and(succeeded(), contains(variables['Build.Reason'], 'PullRequest'))
-  #   pool:
-  #     vmImage: "ubuntu-18.04"
-  #   jobs:
-  #     - deployment: DevBuild
-  #       environment: "dev-builds"
-  #       strategy:
-  #         runOnce:
-  #           deploy:
-  #             steps:
-  #               - task: Npm@1
-  #                 displayName: "Publish to npm (dev-builds)"
-  #                 inputs:
-  #                   command: "custom"
-  #                   customCommand: "publish $(Pipeline.Workspace)/npm/${Build.DefinitionName}-${Build.BuilderNumber}.tgz"
-  #                   customRegistry: "useFeed"
-  #                   customFeed: "da7703d4-fb22-4933-b869-83f4264b7b84/e1336e71-3540-4a0c-830c-639112685b07"
+  - stage: Deploy
+    dependsOn: Build
+    condition: and(succeeded(), contains(variables['Build.Reason'], 'PullRequest'))
+    pool:
+      vmImage: "ubuntu-18.04"
+    jobs:
+      - deployment: DevBuild
+        environment: "dev-builds"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: deploy-dev-template.yml
+                  parameters:
+                    package: $(eslintConfig)
+                - template: deploy-dev-template.yml
+                  parameters:
+                    package: $(reactApp)
+                - template: deploy-dev-template.yml
+                  parameters:
+                    package: $(reactAppBasic)
+                - template: deploy-dev-template.yml
+                  parameters:
+                    package: $(reactAppCommon)
+                - template: deploy-dev-template.yml
+                  parameters:
+                    package: $(reactAppRouterRedux)
+                - template: deploy-dev-template.yml
+                  parameters:
+                    package: $(reactAppRouterReduxAsync)
   # - stage: Release
   #   dependsOn: Build
   #   condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags/v'))
