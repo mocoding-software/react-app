@@ -10,7 +10,7 @@ import {
   RenderFuncProps,
 } from "@mocoding/react-app-common";
 
-export default function render(callback: RenderCallback, props: RenderFuncProps): void {
+export function render(callback: RenderCallback, props: RenderFuncProps): void {
   try {
     const htmlProps: HtmlProps = {
       assets: props.assets,

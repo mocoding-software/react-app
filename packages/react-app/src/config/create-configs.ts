@@ -4,7 +4,7 @@ import { Configuration, Entry } from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { createWebConfig } from "./create-web-config";
 import { createServerConfig } from "./create-server-config";
-import { Options } from "../cli/options";
+import { AppOptions } from "../cli/options";
 import chalk from "chalk";
 
 function inject(configs: Configuration[], module: string, alias: string): void {
@@ -13,7 +13,7 @@ function inject(configs: Configuration[], module: string, alias: string): void {
   }
 }
 
-export function createConfigs(settings: Options): Configuration[] {
+export function createConfigs(settings: AppOptions): Configuration[] {
   // Defaults:
   // projectRoot - root of the project (project.json location)
   // appRoot - application main directory

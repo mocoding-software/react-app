@@ -1,0 +1,4 @@
+{
+  "appEntry": "examples/router-redux-async",
+  "bootstrapModule": "@mocoding/react-app-router-redux-async"
+}

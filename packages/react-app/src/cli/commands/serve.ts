@@ -1,14 +1,14 @@
-import { Options, registerCommand } from "../options";
-import { createConfigs } from "../../config";
+import { registerCommand } from "../command";
 import express from "express";
-import webpack from "webpack";
+import webpack, { Configuration } from "webpack";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const devMiddleware = require("webpack-dev-middleware");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const hotMiddleware = require("webpack-hot-middleware");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const hotServerMiddleware = require("webpack-hot-server-middleware");
-import { printResults } from "../printResults";
 
-function config(opts: Options) {
-  const configs = createConfigs(opts);
+function serve(configs: Configuration[]): void {
   const compiler = webpack(configs);
   const app = express();
   const port = process.env.PORT || 3000;
@@ -33,4 +33,4 @@ function config(opts: Options) {
   );
 }
 
-registerCommand("serve", "Start development server").action(config);
+registerCommand("serve", "Start development server", serve);

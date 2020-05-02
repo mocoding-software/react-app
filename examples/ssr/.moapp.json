@@ -1,0 +1,4 @@
+{
+  "appEntry": "examples/ssr",
+  "bootstrapModule": "examples/ssr"
+}

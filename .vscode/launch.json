@@ -9,7 +9,7 @@
       "name": "Debug Basic Config Example",
       "request": "launch",
       "program": "${workspaceRoot}/packages/react-app/src/cli/index.ts",
-      "args": ["config", "-e", "examples/basic"],
+      "args": ["config", "-c", "examples/basic/.moapp.json"],
       "outFiles": ["${workspaceRoot}/packages/react-app/lib/**/*.js"],
       "cwd": "${workspaceRoot}",
       "console": "integratedTerminal",

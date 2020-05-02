@@ -1,10 +1,10 @@
-import { Options, registerCommand } from "../options";
-import { createConfigs } from "../../config";
+import { registerCommand } from "../command";
 
-function config(opts: Options) {
-  const configs = createConfigs(opts);
+import { Configuration } from "webpack";
+
+function config(configs: Configuration[]): void {
   // tslint:disable-next-line: no-console
   console.log(configs);
 }
 
-registerCommand("config", "Display Webpack configuration").action(config);
+registerCommand("config", "Display Webpack configuration", config);
