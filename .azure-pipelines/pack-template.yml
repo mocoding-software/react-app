@@ -13,10 +13,10 @@ steps:
     displayName: "${{ parameters.package }} - Pack"
     condition:
     inputs:
-      arguments: "pack --filename $(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuilderNumber).tgz"
+      arguments: "pack --filename $(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuildNumber).tgz"
       projectDirectory: "$(Build.SourcesDirectory)/packages/${{ parameters.package }}"
   - task: PublishBuildArtifacts@1
-    displayName: "${{ parameters.package }} - Publish ${{ parameters.package }}"
+    displayName: "${{ parameters.package }} - Publish"
     inputs:
-      PathtoPublish: "$(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuilderNumber).tgz"
+      PathtoPublish: "$(Build.StagingDirectory)/${{ parameters.package }}-$(Build.BuildNumber).tgz"
       ArtifactName: npm-${{ parameters.package }}
