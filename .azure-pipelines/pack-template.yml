@@ -5,11 +5,6 @@ parameters:
     default: ""
 steps:
   - task: Yarn@3
-    displayName: "${{ parameters.package }} - Update version"
-    inputs:
-      projectDirectory: "$(Build.SourcesDirectory)/packages/${{ parameters.package }}"
-      arguments: "version --new-version $(Build.BuildNumber) --no-git-tag-version"
-  - task: Yarn@3
     displayName: "${{ parameters.package }} - Pack"
     condition:
     inputs:
