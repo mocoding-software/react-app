@@ -24,7 +24,9 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["prettier", "react", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "react/prop-types": "off",
+  },
   settings: {
     react: {
       version: "16.13.1",
