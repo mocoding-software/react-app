@@ -26,6 +26,12 @@ module.exports = {
   plugins: ["prettier", "react", "@typescript-eslint"],
   rules: {
     "react/prop-types": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        allowExpressions: true,
+      },
+    ],
   },
   settings: {
     react: {
