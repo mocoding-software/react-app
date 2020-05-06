@@ -1,11 +1,13 @@
-# `mocoding-app-router-redux-async`
+# @mocoding/react-app-router-redux-async
 
-> TODO: description
+> Bootstrap Module with async SSR to await API calls. See [@mocoding/react-app](https://www.npmjs.com/package/@mocoding/react-app) for more details.
 
-## Usage
+The most advanced bootstrap module. Allows serving stateful web app with routing and rely on API results during preloading.
 
-```
-const mocodingAppRouterReduxAsync = require('mocoding-app-router-redux-async');
+## Getting started
 
-// TODO: DEMONSTRATE API
+Install package as development dependency:
+
+```sh
+yarn add --dev @mocoding/react-app-router-redux-async
 ```

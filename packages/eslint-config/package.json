@@ -1,7 +1,7 @@
 {
   "name": "@mocoding/eslint-config",
   "version": "1.0.0",
-  "description": "Base eslint and prettier configuration",
+  "description": "Shared eslint and prettier configuration",
   "repository": "https://github.com/mocoding-software/react-app/tree/master/packages/eslint-config",
   "bugs": {
     "url": "https://github.com/mocoding-software/react-app/issues",
