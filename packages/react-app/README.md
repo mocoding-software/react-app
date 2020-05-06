@@ -5,7 +5,7 @@
 
 ## Getting started
 
-Create `package.json` witht he following content:
+Create `package.json` with the following content:
 
 ```json
 {
