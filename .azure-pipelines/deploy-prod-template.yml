@@ -8,5 +8,5 @@ steps:
     displayName: "${{ parameters.package }} - Publish to npm"
     inputs:
       command: "custom"
-      customCommand: "publish $(Pipeline.Workspace)/npm-${{ parameters.package }}/${{ parameters.package }}-$(Build.BuildNumber).tgz"
+      customCommand: "publish --access public $(Pipeline.Workspace)/npm-${{ parameters.package }}/${{ parameters.package }}-$(Build.BuildNumber).tgz"
       customEndpoint: "public-npm"
