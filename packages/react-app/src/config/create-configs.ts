@@ -41,6 +41,10 @@ export function createConfigs(settings: AppOptions): Configuration[] {
     ? []
     : ["webpack-hot-middleware/client", "react-hot-loader/patch"];
 
+  if (fs.existsSync(outputPath)) fs.rmdirSync(outputPath, { recursive: true });
+  if (fs.existsSync(outputPathServer))
+    fs.rmdirSync(outputPathServer, { recursive: true });
+
   delete process.env.TS_NODE_PROJECT;
 
   process.stdout.write(`${chalk.yellow("Application Root    :")} ${appRoot}\n`);

@@ -1,11 +1,13 @@
-# `mocoding-app-basic`
+# @mocoding/react-app-basic
 
-> TODO: description
+> Basic Bootstrap Module for React Web Application. See [@mocoding/react-app](https://www.npmjs.com/package/@mocoding/react-app) for more details.
 
-## Usage
+Allows serving basic stateless single web app with server side rendering.
 
-```
-const mocodingAppBasic = require('mocoding-app-basic');
+## Getting started
 
-// TODO: DEMONSTRATE API
+Install package as development dependency:
+
+```sh
+yarn add --dev @mocoding/react-app-basic
 ```

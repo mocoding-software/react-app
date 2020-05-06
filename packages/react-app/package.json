@@ -1,10 +1,15 @@
 {
   "name": "@mocoding/react-app",
-  "version": "0.0.0",
-  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
-  "keywords": [],
-  "author": "Dennis Miasoutov <dennis.miasoutov@mocoding.com>",
-  "license": "ISC",
+  "version": "1.0.0",
+  "description": "Bootstrap and Build System for React Web Application. Batteries included.",
+  "repository": "https://github.com/mocoding-software/react-app/tree/master/packages/react-app",
+  "bugs": {
+    "url": "https://github.com/mocoding-software/react-app/issues",
+    "email": "social@mocoding.com"
+  },
+  "homepage": "https://github.com/mocoding-software/react-app#readme",
+  "author": "MOCODING, LLC",
+  "license": "MIT",
   "main": "lib/index.js",
   "bin": {
     "moapp": "lib/cli/index.js"
@@ -14,12 +19,12 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "prepack": "tsc --build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "prepack": "tsc --build"
   },
   "dependencies": {
-    "@mocoding/react-app-common": "*",
-    "@mocoding/eslint-config": "*",
+    "@mocoding/react-app-common": "^1.0.0",
+    "@mocoding/react-app-basic": "^1.0.0",
+    "@mocoding/eslint-config": "^1.0.0",
     "chalk": "^4.0.0",
     "commander": "^5.1.0",
     "cosmiconfig": "^6.0.0",

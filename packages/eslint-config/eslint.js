@@ -24,7 +24,15 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["prettier", "react", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        allowExpressions: true,
+      },
+    ],
+  },
   settings: {
     react: {
       version: "16.13.1",

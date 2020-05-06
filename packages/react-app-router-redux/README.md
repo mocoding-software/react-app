@@ -1,11 +1,13 @@
-# `mocoding-app-router-redux`
+# @mocoding/react-app-router-redux
 
-> TODO: description
+> Bootstrap Module with router and redux. See [@mocoding/react-app](https://www.npmjs.com/package/@mocoding/react-app) for more details.
 
-## Usage
+Allows serving stateful web app with routing. Great for rich websites without relying on any API prefetch functionality.
 
-```
-const mocodingAppRouterRedux = require('mocoding-app-router-redux');
+## Getting started
 
-// TODO: DEMONSTRATE API
+Install package as development dependency:
+
+```sh
+yarn add --dev @mocoding/react-app-router-redux
 ```
