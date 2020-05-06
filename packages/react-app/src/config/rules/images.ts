@@ -1,6 +1,6 @@
 import webpack from "webpack";
 
-function createImagesRule(emitFile: boolean = true): webpack.Rule {
+function createImagesRule(emitFile = true): webpack.Rule {
   return {
     test: /\.(png|jpg|gif)$/,
     use: {
