@@ -1,0 +1,12 @@
+# File: deploy-prod-template.yml
+parameters:
+  - name: package
+    type: string
+    default: ""
+steps:
+  - task: Npm@1
+    displayName: "${{ parameters.package }} - Publish to npm"
+    inputs:
+      command: "custom"
+      customCommand: "publish $(Pipeline.Workspace)/npm-${{ parameters.package }}/${{ parameters.package }}-$(Build.BuildNumber).tgz"
+      customEndpoint: "public-npm"
