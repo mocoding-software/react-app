@@ -92,6 +92,7 @@ export function createWebConfig(
           logInfoToStdOut: true,
           logLevel: "ERROR",
         }),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       ],
     },
     stats: true,
