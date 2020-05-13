@@ -2,9 +2,9 @@
   "name": "mocoding-react-app-monorepo",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.20.2",
+    "lerna": "^3.21.0",
     "redux-thunk": "^2.3.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.2"
   },
   "workspaces": [
     "packages/*"
@@ -15,7 +15,10 @@
   "scripts": {
     "cli": "moapp",
     "version": "lerna version --no-git-tag-version --yes",
-    "build": "yarn workspace @mocoding/react-app build"
+    "build": "yarn workspace @mocoding/react-app build",
+    "basic": "yarn cli serve --config examples/basic/.moapp.json",
+    "redux": "yarn cli serve --config examples/router-redux/.moapp.json",
+    "redux-async": "yarn cli serve --config examples/router-redux-async/.moapp.json"    
   },
   "eslintConfig": {
     "extends": "@mocoding/eslint-config"

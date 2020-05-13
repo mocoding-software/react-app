@@ -12,7 +12,7 @@ export class Body extends React.Component<BodyProps> {
   public render(): React.ReactNode {
     const { scripts, markup, bodyAttrs } = this.props;
 
-    const type = process.env.SCRIPTS_TYPE || "module";
+    const type = process.env.MOAPP_SCRIPTS_TYPE || "text/javascript";
 
     const renderScripts = scripts.map((scriptSrc, i) => (
       <script type={type} src={scriptSrc} key={i} charSet="utf-8" />

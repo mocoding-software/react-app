@@ -19,7 +19,7 @@ function serverRenderer(stats: ServerRenderStats) {
     const assets = jsonStats.assetsByChunkName;
     const assetsUrls: string[] = [].concat(...Object.values(assets));
     const defaultApiUrl = `${req.protocol}://${req.hostname}`;
-    const apiUrl = process.env.API_URL;
+    const apiUrl = process.env.MOAPP_API_URL;
     const baseUrl = typeof apiUrl !== "undefined" ? apiUrl : defaultApiUrl;
     const callback: RenderCallback = (error, result) => {
       if (error) {
