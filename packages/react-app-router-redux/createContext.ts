@@ -4,7 +4,7 @@ import { createBrowserHistory, History } from "history";
 import * as Redux from "redux";
 import { Context } from "@mocoding/react-app-common";
 
-import { middlewares, reducers } from "injected-app-entry/store";
+import { middlewares, reducers, onParseInitialState } from "injected-app-entry/store";
 import devMiddlewares from "@mocoding/react-app-router-redux/middlewares";
 
 export interface ReduxRouterState {
@@ -57,12 +57,16 @@ function configureStore<TState extends ReduxRouterState>(
   return store;
 }
 
+function parseState<T>(serialized: string): T {
+  return onParseInitialState ? onParseInitialState(serialized) : JSON.parse(serialized);
+}
+
 export function createContext(abstractHistory?: History): Context {
-  const initialState =
+  const initialState: ReduxRouterState | undefined =
     typeof window === "undefined" ||
     typeof (window as any).__PRELOADED_STATE__ === "undefined"
       ? undefined
-      : JSON.parse((window as any)?.__PRELOADED_STATE__);
+      : parseState<ReduxRouterState>((window as any)?.__PRELOADED_STATE__);
   const history = abstractHistory ?? createBrowserHistory();
   return {
     history,
