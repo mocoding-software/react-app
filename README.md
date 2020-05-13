@@ -103,10 +103,10 @@ The library uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to 
 Default Configuration (see `packages/react-app/src/cli/options.ts`):
 ```json
 {
-  appEntry: ".",
-  bootstrapModule: "@mocoding/react-app-basic",
-  outputClientPath: "./wwwroot",
-  outputServerPath: "./wwwroot_node",
+  "appEntry": ".",
+  "bootstrapModule": "@mocoding/react-app-basic",
+  "outputClientPath": "./wwwroot",
+  "outputServerPath": "./wwwroot_node",
 }
 ```
 
