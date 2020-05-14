@@ -15,6 +15,7 @@ export function createWebConfig(
     new MiniCssExtractPlugin({
       filename: isProduction ? "[name].[contenthash:6].css" : "[name].css",
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ];
 
   const rules: webpack.RuleSetRule[] = [

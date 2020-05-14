@@ -41,6 +41,7 @@ export function createServerConfig(
         tsconfig: tsConfigLocation,
         measureCompilationTime: false,
       }),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ],
     resolve: {
       alias: {},
