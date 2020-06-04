@@ -5,8 +5,8 @@ import "./favicon/favicon.ico";
 import "./favicon/android-chrome-192x192.png";
 import "./favicon/android-chrome-512x512.png";
 import appleTouchIcon from "./favicon/apple-touch-icon.png";
-import favicon32 from "./favicon/apple-touch-icon.png";
-import favicon16 from "./favicon/apple-touch-icon.png";
+import favicon32 from "./favicon/favicon-32x32.png";
+import favicon16 from "./favicon/favicon-16x16.png";
 import manifest from "./favicon/site.webmanifest";
 
 export class App extends React.Component {
