@@ -3,7 +3,7 @@ import webpack from "webpack";
 
 const sassRegex = /\.s[ac]ss$/i;
 
-export const sass: (isProduction: boolean) => webpack.Rule = isProduction => ({
+export const sass: (isProduction: boolean) => webpack.Rule = (isProduction) => ({
   test: sassRegex,
   use: [
     {

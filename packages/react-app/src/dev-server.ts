@@ -1,4 +1,4 @@
-import * as Webpack from "webpack";
+import { Request, Response, NextFunction } from "express";
 import {
   RedirectResult,
   RenderCallback,
@@ -8,12 +8,8 @@ import {
 
 import { render } from "injected-bootstrap-module/render";
 
-interface ServerRenderStats {
-  clientStats: Webpack.Stats;
-}
-
-function serverRenderer(stats: ServerRenderStats) {
-  return (req: any, res: any, next: any) => {
+function serverRenderer() {
+  return (req: Request, res: Response, next: NextFunction) => {
     process.stdout.write(`Request ${req.originalUrl}\n`);
     const jsonStats = res.locals.webpackStats.stats[0].toJson();
     const assets = jsonStats.assetsByChunkName;

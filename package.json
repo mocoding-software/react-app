@@ -16,6 +16,7 @@
     "cli": "moapp",
     "version": "lerna version --no-git-tag-version --yes",
     "build": "yarn workspace @mocoding/react-app build",
+    "favs": "yarn cli serve --config examples/favs/.moapp.json",
     "basic": "yarn cli serve --config examples/basic/.moapp.json",
     "redux": "yarn cli serve --config examples/router-redux/.moapp.json",
     "redux-async": "yarn cli serve --config examples/router-redux-async/.moapp.json"    

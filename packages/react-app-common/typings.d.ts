@@ -12,6 +12,10 @@ declare module "*.gif" {
   const content: string;
   export default content;
 }
+declare module "*.webmanifest" {
+  const content: string;
+  export default content;
+}
 
 declare module "injected-bootstrap-module" {
   import { AppProps, ContextFactoryFunc } from "@mocoding/react-app-common";
