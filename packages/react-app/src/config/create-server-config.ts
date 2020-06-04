@@ -10,12 +10,12 @@ export function createServerConfig(
   isProduction: boolean,
 ): webpack.Configuration {
   const rules: webpack.RuleSetRule[] = [
+    noFavicon,
     typescript(tsConfigLocation),
     noCss,
     noSass,
     noFonts,
     noImages,
-    noFavicon,
   ];
   return {
     devtool: isProduction ? "source-map" : "cheap-module-eval-source-map",

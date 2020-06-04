@@ -16,7 +16,7 @@ export const typescript: (configFile: string) => webpack.Rule = (configFile) => 
       }),
       onlyCompileBundledFiles: true,
       transpileOnly: true,
-      configFile
+      configFile,
     },
   },
 });

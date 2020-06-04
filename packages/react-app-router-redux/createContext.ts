@@ -1,4 +1,4 @@
-import { connectRouter, RouterState, LocationChangeAction } from "connected-react-router";
+import { connectRouter, RouterState } from "connected-react-router";
 import { routerMiddleware } from "connected-react-router";
 import { createBrowserHistory, History } from "history";
 import * as Redux from "redux";

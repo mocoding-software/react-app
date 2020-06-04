@@ -19,13 +19,13 @@ export function createWebConfig(
   ];
 
   const rules: webpack.RuleSetRule[] = [
+    favicon,
     typescript(tsConfigLocation),
     css(isProduction),
     sass(isProduction),
     sassGlob,
     fonts,
     images,
-    favicon,
   ];
 
   if (!isProduction) {

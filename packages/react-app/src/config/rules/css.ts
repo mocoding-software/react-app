@@ -3,7 +3,7 @@ import webpack from "webpack";
 
 const cssRegex = /\.css$/i;
 
-export const css: (isProduction: boolean) => webpack.Rule = isProduction => ({
+export const css: (isProduction: boolean) => webpack.Rule = (isProduction) => ({
   test: cssRegex,
   use: [
     {
