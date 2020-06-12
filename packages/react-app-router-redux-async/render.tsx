@@ -35,21 +35,25 @@ export function render(callback: RenderCallback, props: RenderFuncProps): void {
         firstError = errorOrNothing;
         callback(errorOrNothing);
       } else {
-        const markup = renderToString(app);
+        try {
+          const markup = renderToString(app);
 
-        const htmlProps: HelmetHtmlProps = {
-          assets: props.assets,
-          context,
-          inlineScripts: props.inlineScripts,
-          markup,
-        };
+          const htmlProps: HelmetHtmlProps = {
+            assets: props.assets,
+            context,
+            inlineScripts: props.inlineScripts,
+            markup,
+          };
 
-        const html =
-          "<!DOCTYPE html>" + renderToStaticMarkup(<HelmetHtml {...htmlProps} />);
+          const html =
+            "<!DOCTYPE html>" + renderToStaticMarkup(<HelmetHtml {...htmlProps} />);
 
-        callback(undefined, {
-          html,
-        });
+          callback(undefined, {
+            html,
+          });
+        } catch (error) {
+          callback(error);
+        }
       }
     };
     domainTaskRun(() => {
