@@ -1,6 +1,6 @@
 import webpack from "webpack";
 
-function createFontsRule(emitFile = true): webpack.Rule {
+function createFontsRule(emitFile = true): webpack.RuleSetRule {
   return {
     test: /\.(eot|ttf|otf|woff|woff2|svg)$/,
     use: {

@@ -3,7 +3,7 @@ import webpack from "webpack";
 
 const sassRegex = /\.s[ac]ss$/i;
 
-export const sass: (isProduction: boolean) => webpack.Rule = (isProduction) => ({
+export const sass: (isProduction: boolean) => webpack.RuleSetRule = (isProduction) => ({
   test: sassRegex,
   use: [
     {
@@ -17,13 +17,13 @@ export const sass: (isProduction: boolean) => webpack.Rule = (isProduction) => (
   ],
 });
 
-export const sassGlob: webpack.Rule = {
+export const sassGlob: webpack.RuleSetRule = {
   enforce: "pre",
   test: sassRegex,
   use: "import-glob",
 };
 
-export const noSass: webpack.Rule = {
+export const noSass: webpack.RuleSetRule = {
   test: sassRegex,
   use: "ignore-loader",
 };

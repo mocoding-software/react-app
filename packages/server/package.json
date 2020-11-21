@@ -1,0 +1,27 @@
+{
+  "name": "@mocoding/server",
+  "version": "1.0.0",
+  "description": "Shared eslint and prettier configuration",
+  "repository": "https://github.com/mocoding-software/react-app/tree/master/packages/server",
+  "bugs": {
+    "url": "https://github.com/mocoding-software/react-app/issues",
+    "email": "social@mocoding.com"
+  },
+  "homepage": "https://github.com/mocoding-software/react-app#readme",
+  "author": "MOCODING, LLC",
+  "license": "MIT",
+  "main": "eslint.js",
+  "files": [    
+  ],
+  "scripts": {
+    "build": "webpack --progress --stats"    
+  },
+  "devDependencies": {
+    "@mocoding/build-scripts": "^1.0.0",
+    "@types/express": "^4.17.9",
+    "express": "^4.17.1",
+    "ts-node": "^9.0.0",
+    "ts-loader": "^8.0.11",
+    "webpack-cli": "^4.2.0"
+  }
+}

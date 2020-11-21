@@ -1,6 +1,6 @@
 import webpack from "webpack";
 
-function createImagesRule(emitFile = true): webpack.Rule {
+function createImagesRule(emitFile = true): webpack.RuleSetRule {
   return {
     test: /\.(png|jpg|gif)$/,
     exclude: (path) => path.indexOf("favicon") > 0,

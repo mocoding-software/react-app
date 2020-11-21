@@ -1,6 +1,6 @@
 import webpack from "webpack";
 
-function createFaviconRule(emitFile = true): webpack.Rule {
+function createFaviconRule(emitFile = true): webpack.RuleSetRule {
   return {
     test: /\.(ico|png|webmanifest)$/,
     include: (path) => path.indexOf("favicon") > 0,

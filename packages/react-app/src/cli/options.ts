@@ -6,7 +6,8 @@ export interface CliOptions {
 }
 
 export interface AppOptions extends CliOptions {
-  appEntry: string;
+  clientEntry: string;
+  serverEntry: string;
   bootstrapModule: string;
   outputClientPath: string;
   outputServerPath: string;
@@ -15,10 +16,11 @@ export interface AppOptions extends CliOptions {
 
 export const DefaultAppOption: AppOptions = {
   analyze: false,
-  appEntry: ".",
+  clientEntry: "./src/frontend",
+  serverEntry: "./src/backend",
   bootstrapModule: "@mocoding/react-app-basic",
-  outputClientPath: "./wwwroot",
-  outputServerPath: "./wwwroot_node",
+  outputClientPath: "./build/public",
+  outputServerPath: "./build",
   production: false,
   version: "0.0.0",
 };

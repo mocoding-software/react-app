@@ -5,17 +5,25 @@ import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import * as webpack from "webpack";
 import { typescript, css, sass, fonts, sassGlob, images, favicon } from "./rules";
 
+type WebpackPlugin = (
+  | ((this: webpack.Compiler, compiler: webpack.Compiler) => void)
+  | webpack.WebpackPluginInstance
+);
+
 export function createWebConfig(
   tsConfigLocation: string,
   entry: webpack.Entry,
   outputPath: string,
   isProduction: boolean,
 ): webpack.Configuration {
-  const plugins = [
+  const plugins: WebpackPlugin[] = [
     new MiniCssExtractPlugin({
       filename: isProduction ? "[name].[contenthash:6].css" : "[name].css",
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
+    }),    
   ];
 
   const rules: webpack.RuleSetRule[] = [
@@ -32,13 +40,13 @@ export function createWebConfig(
     plugins.push(new webpack.HotModuleReplacementPlugin({ quiet: true }));
   } else {
     plugins.push(
-      new OptimizeCssAssetsPlugin({
+      new OptimizeCssAssetsPlugin({ 
         assetNameRegExp: /\.css$/g,
         cssProcessor: require("cssnano"),
         cssProcessorOptions: {
           preset: ["default", { discardComments: { removeAll: true } }],
         },
-      }),
+      }) as any
     );
   }
 

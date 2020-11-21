@@ -3,7 +3,7 @@ import webpack from "webpack";
 
 const cssRegex = /\.css$/i;
 
-export const css: (isProduction: boolean) => webpack.Rule = (isProduction) => ({
+export const css: (isProduction: boolean) => webpack.RuleSetRule = (isProduction) => ({
   test: cssRegex,
   use: [
     {
@@ -16,7 +16,7 @@ export const css: (isProduction: boolean) => webpack.Rule = (isProduction) => ({
   ],
 });
 
-export const noCss: webpack.Rule = {
+export const noCss: webpack.RuleSetRule = {
   test: cssRegex,
   use: "ignore-loader",
 };

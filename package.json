@@ -7,7 +7,8 @@
     "typescript": "^3.9.2"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "dependencies": {
     "@mocoding/react-app": "*"
@@ -15,7 +16,8 @@
   "scripts": {
     "cli": "moapp",
     "version": "lerna version --no-git-tag-version --yes",
-    "build": "yarn workspace @mocoding/react-app build",
+    "build": "lerna run build --scope=@mocoding/react-app",
+    "build:all": "lerna run build --scope=@mocoding/react-app --include-filtered-dependencies",
     "favs": "yarn cli serve --config examples/favs/.moapp.json",
     "basic": "yarn cli serve --config examples/basic/.moapp.json",
     "redux": "yarn cli serve --config examples/router-redux/.moapp.json",

@@ -9,7 +9,7 @@ interface MultiStats {
 interface TsError {
   file: string;
   message: string;
-  rawMessage: string;
+  details: string;
 }
 
 function printErrors(errors: TsError[]): void {
@@ -27,7 +27,7 @@ function printWarnings(warnings: TsError[]): void {
 
 function printFiles(stats: Stats, name: string): void {
   const out = stats.compilation.outputOptions.path;
-  const target = stats.compilation.outputOptions.libraryTarget;
+  const target = stats.compilation.outputOptions.library.type;
   process.stdout.write(`${name} (${target}):\n`);
   const assets = Object.keys(stats.compilation.assets).filter((_) => !_.endsWith("d.ts"));
   for (const asset of assets) {

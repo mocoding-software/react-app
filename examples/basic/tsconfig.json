@@ -1,0 +1,6 @@
+{
+  "extends": "@mocoding/build-scripts/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+}

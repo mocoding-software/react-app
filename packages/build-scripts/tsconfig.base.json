@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "experimentalDecorators": true,
+    "allowJs": false,
+    "target": "ES2015",
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "baseUrl": ".",
+  },
+  "files": [
+    "typings.d.ts"
+  ]
+}

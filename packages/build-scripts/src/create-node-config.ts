@@ -3,11 +3,11 @@ import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import * as webpack from "webpack";
 import { typescript, noCss, noSass, noFonts, noImages, noFavicon } from "./rules";
 
-export function createServerConfig(
-  tsConfigLocation: string,
+export function createNodeConfig(  
   entry: webpack.Entry,
   outputPath: string,
   isProduction: boolean,
+  tsConfigLocation: string = "tsconfig.json"
 ): webpack.Configuration {
   const rules: webpack.RuleSetRule[] = [
     noFavicon,
@@ -18,15 +18,13 @@ export function createServerConfig(
     noImages,
   ];
   return {
-    devtool: isProduction ? "source-map" : "cheap-module-eval-source-map",
+    devtool: isProduction ? "source-map" : "eval-cheap-module-source-map",
     entry,
     mode: isProduction ? "production" : "development",
     module: { rules },
     name: "server",
     optimization: {
-      minimize: false,
-      namedChunks: true,
-      namedModules: true,
+      minimize: false,            
     },
     output: {
       filename: "[name].js",
@@ -37,11 +35,13 @@ export function createServerConfig(
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
-        eslint: true,
-        tsconfig: tsConfigLocation,
-        measureCompilationTime: false,
+        eslint: { enabled: true, files: "src/**/*.{ts,tsx,js,jsx}" },
+        typescript: { configFile: tsConfigLocation},        
       }),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/
+      }),      
     ],
     resolve: {
       alias: {},
