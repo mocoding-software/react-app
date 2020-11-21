@@ -15,5 +15,5 @@
     "jsx": "react",
     "outDir": "./lib"
   },
-  "include": ["./src"]
+  "include": ["./src", "typings.d.ts"]
 }

@@ -1,16 +1,19 @@
 import express from "express";
 
 import configureWebApp from "injected-server";
+import ssrMiddleware from "injected-ssr";
 
 // create express application
-const webApp = express(); // createApp(config);
+const app = express(); // createApp(config);
 
-configureWebApp(webApp);
+app.use(express.static("public"));
+app.use(ssrMiddleware);
+configureWebApp(app);
 
 // start server
 const port = 3000;
 const env = "development";
-const server = webApp.listen(port, () => {
+const server = app.listen(port, () => {
   process.stdout.write(`App is running at http://localhost:${port} in ${env} mode\n`);
   process.stdout.write(" Press CTRL-C to stop\n");
 });

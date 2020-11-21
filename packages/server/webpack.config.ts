@@ -11,6 +11,7 @@ function createConfig(env: any, argv: any): webpack.Configuration {
 
   config.externals = {
     "injected-server": "./server.js",
+    "injected-ssr": "./render.js",
   };
 
   return config;

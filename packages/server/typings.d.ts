@@ -4,3 +4,10 @@ declare module "injected-server" {
   const configureWebApp: ConfigureServerFunc;
   export = configureWebApp;
 }
+
+declare module "injected-ssr" {
+  import express from "express"; 
+  const ssrMiddleware: express. RequestHandler;
+  export = ssrMiddleware;
+}
+
