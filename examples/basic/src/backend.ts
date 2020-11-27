@@ -1,9 +1,9 @@
-import * as express from "express";
+import { Server } from "@mocoding/server";
 
-function configureWebApp(app: express.Express) {
-  app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
-}
+const server = new Server();
 
-export default configureWebApp;
+server.app.get("/hello", (req, res) => {
+  res.send("Hello World!");
+});
+
+server.start();

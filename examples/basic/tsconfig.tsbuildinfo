@@ -735,6 +735,11 @@
         "version": "9575baefb3597b2bf1514d36839d36ab8404dfcb5ad4b1a322165a96fbd618e7",
         "signature": "9575baefb3597b2bf1514d36839d36ab8404dfcb5ad4b1a322165a96fbd618e7",
         "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/webpack-node-externals/index.d.ts": {
+        "version": "d7fe36baf85ac58ede179134def350b6e2cc9f6e27da6cf5752ce4efdb2cd5d9",
+        "signature": "d7fe36baf85ac58ede179134def350b6e2cc9f6e27da6cf5752ce4efdb2cd5d9",
+        "affectsGlobalScope": false
       }
     },
     "options": {
@@ -1039,6 +1044,9 @@
         "../../node_modules/source-map/source-map.d.ts"
       ],
       "../../node_modules/@types/webpack-bundle-analyzer/index.d.ts": [
+        "../../node_modules/webpack/types.d.ts"
+      ],
+      "../../node_modules/@types/webpack-node-externals/index.d.ts": [
         "../../node_modules/webpack/types.d.ts"
       ],
       "../../node_modules/@types/webpack-sources/index.d.ts": [
@@ -1427,6 +1435,9 @@
       "../../node_modules/@types/webpack-bundle-analyzer/index.d.ts": [
         "../../node_modules/webpack/types.d.ts"
       ],
+      "../../node_modules/@types/webpack-node-externals/index.d.ts": [
+        "../../node_modules/webpack/types.d.ts"
+      ],
       "../../node_modules/@types/webpack-sources/index.d.ts": [
         "../../node_modules/@types/node/index.d.ts",
         "../../node_modules/@types/webpack-sources/lib/CachedSource.d.ts",
@@ -1626,6 +1637,7 @@
       "../../node_modules/@types/uglify-js/index.d.ts",
       "../../node_modules/@types/webpack-bundle-analyzer/index.d.ts",
       "../../node_modules/@types/webpack-env/index.d.ts",
+      "../../node_modules/@types/webpack-node-externals/index.d.ts",
       "../../node_modules/@types/webpack-sources/index.d.ts",
       "../../node_modules/@types/webpack-sources/lib/CachedSource.d.ts",
       "../../node_modules/@types/webpack-sources/lib/CompatSource.d.ts",

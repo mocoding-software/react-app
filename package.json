@@ -19,7 +19,7 @@
     "build": "lerna run build --scope=@mocoding/react-app",
     "build:all": "lerna run build --scope=@mocoding/react-app --include-filtered-dependencies",
     "favs": "yarn cli serve --config examples/favs/.moapp.json",
-    "basic": "yarn cli serve --config examples/basic/.moapp.json",
+    "basic": "yarn workspace basic run",
     "redux": "yarn cli serve --config examples/router-redux/.moapp.json",
     "redux-async": "yarn cli serve --config examples/router-redux-async/.moapp.json"    
   },

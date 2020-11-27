@@ -12,10 +12,14 @@
   "license": "MIT",
   "main": "index.ts",
   "scripts": {
-    "build": "echo",
+    "build": "webpack --progress --stats",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "dependencies": {
-    "@mocoding/react-app-common": "^1.0.0"
+  "devDependencies": {
+    "@mocoding/build-scripts": "^1.0.0",
+    "@mocoding/react-app-common": "^1.0.0",
+    "ts-node": "^9.0.0",
+    "ts-loader": "^8.0.11",
+    "webpack-cli": "^4.2.0"
   }
 }

@@ -10,18 +10,18 @@
   "homepage": "https://github.com/mocoding-software/react-app#readme",
   "author": "MOCODING, LLC",
   "license": "MIT",
-  "main": "eslint.js",
-  "files": [    
-  ],
+  "main": "lib/index.js",
+  "files": [],
   "scripts": {
-    "build": "webpack --progress --stats"    
+    "build": "tsc --build",
+    "config": "tsc --showConfig"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "@mocoding/build-scripts": "^1.0.0",
     "@types/express": "^4.17.9",
-    "express": "^4.17.1",
-    "ts-node": "^9.0.0",
-    "ts-loader": "^8.0.11",
-    "webpack-cli": "^4.2.0"
+    "@types/node": "^14.14.10",
+    "typescript": "^4.1.2"
   }
 }

@@ -12,17 +12,23 @@
   "license": "MIT",
   "main": "index.ts",
   "scripts": {
-    "build": "echo test",
+    "build": "webpack --progress --stats",
+    "build:vendors": "webpack --config webpack.config.vendors.ts --progress --stats",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "dependencies": {
+  "devDependencies": {
     "@hot-loader/react-dom": "^17.0.0",
+    "@loadable/component": "^5.14.1",
+    "@mocoding/build-scripts": "^1.0.0",
+    "@types/node": "^14.14.8",
     "@types/react-dom": "^16.9.9",
     "@types/react": "^16.9.56",
-    "@types/node": "^14.14.8",
     "react-dom": "^17.0.1",
     "react-helmet-async": "^1.0.7",
     "react-hot-loader": "^4.13.0",
-    "react": "^17.0.1"
+    "react": "^17.0.1",
+    "ts-loader": "^8.0.11",
+    "ts-node": "^9.0.0",
+    "webpack-cli": "^4.2.0"
   }
 }

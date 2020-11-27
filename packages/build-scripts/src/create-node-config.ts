@@ -1,5 +1,6 @@
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+
 import * as webpack from "webpack";
 import { typescript, noCss, noSass, noFonts, noImages, noFavicon } from "./rules";
 
@@ -18,13 +19,17 @@ export function createNodeConfig(
     noImages,
   ];
   return {
-    devtool: isProduction ? "source-map" : "eval-cheap-module-source-map",
-    entry,
+    devtool: "source-map",
+    entry,  
+    externalsPresets:{
+      node: true
+    },  
     mode: isProduction ? "production" : "development",
     module: { rules },
     name: "server",
     optimization: {
-      minimize: false,            
+      minimize: false,
+      moduleIds: "named"            
     },
     output: {
       filename: "[name].js",
@@ -54,7 +59,7 @@ export function createNodeConfig(
         }),
       ],
     },
-    stats: false,
+    stats: true,
     target: "node",
   };
 }

@@ -1,10 +1,8 @@
 import program from "commander";
 import { AppOptions, CliOptions, DefaultAppOption } from "./options";
 import { cosmiconfigSync } from "cosmiconfig";
-import { createConfigs } from "../config";
-import { Configuration } from "webpack";
 
-export type Command = (configs: Configuration[]) => void;
+export type Command = (cliOptions: AppOptions) => void;
 
 function createAction(command: Command) {
   return (): void => {
@@ -20,9 +18,7 @@ function createAction(command: Command) {
       opts = { ...opts, ...result.config, config: result.filepath || opts.config };
     }
 
-    const configs = createConfigs(opts);
-
-    command(configs);
+    command(opts);
   };
 }
 

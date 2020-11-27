@@ -2,10 +2,6 @@ import chalk from "chalk";
 import * as path from "path";
 import { Stats } from "webpack";
 
-interface MultiStats {
-  stats: Stats[];
-}
-
 interface TsError {
   file: string;
   message: string;
@@ -27,7 +23,7 @@ function printWarnings(warnings: TsError[]): void {
 
 function printFiles(stats: Stats, name: string): void {
   const out = stats.compilation.outputOptions.path;
-  const target = stats.compilation.outputOptions.library.type;
+  const target = stats.compilation.outputOptions.library!.type;
   process.stdout.write(`${name} (${target}):\n`);
   const assets = Object.keys(stats.compilation.assets).filter((_) => !_.endsWith("d.ts"));
   for (const asset of assets) {
@@ -39,7 +35,7 @@ function printFiles(stats: Stats, name: string): void {
       : webpackAsset._value.length;
     const strSize = (size / 1024).toFixed(2);
     process.stdout.write(
-      `  ${chalk.green.italic(path.join(out, asset))} (${strSize} Kb)\n`,
+      `  ${chalk.green.italic(path.join(out!, asset))} (${strSize} Kb)\n`,
     );
   }
   process.stdout.write("\n");
@@ -56,35 +52,75 @@ function printColoredStats(
   process.stdout.write(type(stat === 1 ? "" : "s"));
 }
 
-function printSummary(errors: TsError[], warnings: TsError[], name: string): void {
-  process.stdout.write(`========== ${chalk.bold(name)}: `);
+function printSummary(errors: TsError[], warnings: TsError[], elapsed: number): void {
+  process.stdout.write(`========== ${chalk.bold("Build")}: `);
   printColoredStats(warnings.length, "Warning", chalk.yellow);
   process.stdout.write(", ");
   printColoredStats(errors.length, "Error");
+  process.stdout.write(` ${chalk.bold("Time")}: ${chalk.green(elapsed)} ms`);
   process.stdout.write(" ========== \n");
 }
 
 export function printResults(
-  err: Error,
-  multiStats: MultiStats,
+  err: Error | undefined,
+  stats: Stats | undefined,
   printAssets = true,
 ): void {
   process.stdout.write("\n");
 
-  if (printAssets) {
-    printFiles(multiStats.stats[0], "Client");
-    printFiles(multiStats.stats[1], "Server");
+  if (!stats) {
+    process.stdout.write(`${chalk.red("Compilation failed!!!")}`);
+    if (err) process.stdout.write(`Error: ${err.message}`);
+
+    return;
   }
 
-  const errors: TsError[] = multiStats.stats[0].compilation.errors.concat(
-    multiStats.stats[1].compilation.errors,
-  );
-  const warnings: TsError[] = multiStats.stats[0].compilation.warnings.concat(
-    multiStats.stats[1].compilation.warnings,
+  if (printAssets) {
+    printFiles(stats, "Assets");
+  }
+
+  const errors: TsError[] = stats.compilation.errors.concat(stats.compilation.errors);
+  const warnings: TsError[] = stats.compilation.warnings.concat(
+    stats.compilation.warnings,
   );
   // print only from server
   printWarnings(warnings);
   printErrors(errors);
-  printSummary(errors, warnings, "Build");
+  printSummary(errors, warnings, stats.endTime - stats.startTime);
+  process.stdout.write("\n");
+}
+
+let lastHash: { [key: string]: string } = {};
+
+export function printIncrementalResults(
+  err: Error | undefined,
+  stats: Stats | undefined,
+): void {
+  if (!stats) {
+    process.stdout.write(`${chalk.red("Compilation failed!!!")}`);
+    if (err) process.stdout.write(`Error: ${err.message}`);
+
+    return;
+  }
+
+  process.stdout.write("\n");
+
+  if (stats.hash === lastHash[stats.compilation.name]) return;
+
+  const elapsed = stats.endTime - stats.startTime;
+  if (!stats.hasErrors() && !stats.hasWarnings() && lastHash[stats.compilation.name]) {
+    process.stdout.write(`Done in ${elapsed} ms\n`);
+    lastHash[stats.compilation.name] = stats.hash;
+    return;
+  }
+  
+  lastHash[stats.compilation.name] = stats.hash;
+  const errors: TsError[] = stats.compilation.errors.concat(stats.compilation.errors);
+  const warnings: TsError[] = stats.compilation.warnings.concat(
+    stats.compilation.warnings,
+  );
+  printWarnings(warnings);
+  printErrors(errors);
+  printSummary(errors, warnings, elapsed);
   process.stdout.write("\n");
 }

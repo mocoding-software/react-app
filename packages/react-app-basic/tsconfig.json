@@ -1,9 +1,7 @@
 {
+  "extends": "@mocoding/build-scripts/tsconfig.web.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "strict": true
+    "baseUrl": "."
   },
   "include": ["**/*", "../react-app-common/typings.d.ts"]
 }

@@ -1,9 +1,7 @@
 {
+  "extends": "@mocoding/build-scripts/tsconfig.web.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "strict": true
+    "baseUrl": "."
   },
-  "include": ["**/*", "typings.d.ts", "client.tsx", "server.ts"]
+  "include": ["**/*", "typings.d.ts", "src/frontend/client.tsx", "server.ts"]
 }

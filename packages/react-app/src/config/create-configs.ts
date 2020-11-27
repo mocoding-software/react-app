@@ -48,6 +48,9 @@ export function createConfigs(settings: AppOptions): Configuration[] {
 
   delete process.env.TS_NODE_PROJECT;
 
+  process.stdout.write(
+    `${chalk.yellow("Environment         :")} ${settings.production}\n`,
+  );
   process.stdout.write(`${chalk.yellow("Frontend            :")} ${frontendApp}\n`);
   process.stdout.write(`${chalk.yellow("Backend             :")} ${backendApp}\n`);
   // process.stdout.write(`${chalk.yellow("Bootstrap Module    :")} ${bootstrapModule}\n`);
@@ -57,25 +60,16 @@ export function createConfigs(settings: AppOptions): Configuration[] {
 
   // client & server
   // const client: Entry = {
-  //   index: [...devEntries, clientEntryPoint],
+  //   app: [frontendApp], //...devEntries
   // };
 
-  const server: Entry = {
-    server: backendApp,
-  };
+  // const server: Entry = {
+  //   server: backendApp,
+  // };
 
-  // Creating configs
-  // const clientConfig = createWebConfig(
-  //   tsConfigLocation,
-  //   client,
-  //   outputPath,
-  //   settings.production,
-  // );
-  const serverConfig = createNodeConfig(    
-    server,
-    outputPathServer,
-    settings.production,
-  );
+  // // Creating configs
+  // const clientConfig = createWebConfig(client, outputPath, settings.production);
+  // const serverConfig = createNodeConfig(server, outputPathServer, settings.production);
 
   // Adding default plugin
   // const definePlugin = new webpack.DefinePlugin({
@@ -99,13 +93,33 @@ export function createConfigs(settings: AppOptions): Configuration[] {
   //   clientConfig.profile = true;
   // }
 
-  serverConfig.plugins.push(new CopyPlugin({patterns:[
-    {
-      from: path.join(__dirname, "../../../server/lib/index.js")       
-    }
-  ]}))
+  // serverConfig.plugins!.push(
+  //   new CopyPlugin({
+  //     patterns: [
+  //       {
+  //         from: path.join(__dirname, "../../../server/lib/server.development.js"),
+  //         to: "server.js",
+  //       },
+  //       {
+  //         from: path.join(__dirname, "../../../server/lib/server.development.map"),
+  //         to: "server.map",
+  //       },
+  //     ],
+  //   }),
+  // );
 
-  const configs = [serverConfig]//[clientConfig, serverConfig];
+  // clientConfig.plugins!.push(
+  //   new CopyPlugin({
+  //     patterns: [
+  //       path.join(__dirname, "../../../react-app-common/lib/frontend/vendors.js"),
+  //       path.join(__dirname, "../../../react-app-common/lib/frontend/index.js"),
+  //       path.join(__dirname, "../../../react-app-basic/lib/bootstrap.js"),
+  //     ],
+  //   }),
+  // );
+  // clientConfig.plugins!.push(vendorsDll.consume());
+
+  //const configs = [serverConfig]; //] //[clientConfig, serverConfig];
 
   // adding aliases for hot reload
   // if (!settings.production) {
@@ -116,5 +130,5 @@ export function createConfigs(settings: AppOptions): Configuration[] {
   // inject(configs, "injected-bootstrap-module", bootstrapModule);
   // inject(configs, "injected-app-entry", frontendApp);
 
-  return configs;
+  return [];
 }

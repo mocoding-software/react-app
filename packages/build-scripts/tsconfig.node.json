@@ -13,7 +13,6 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
-    "outDir": "./lib"
-  },
-  "include": ["./src", "typings.d.ts"]
+    "lib": ["ES2020"]
+  }
 }

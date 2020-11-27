@@ -19,25 +19,29 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "prepack": "tsc --build"
+    "prepack": "tsc --build",
+    "config": "tsc --showConfig"
   },
   "dependencies": {
-    "@mocoding/react-app-common": "^1.0.0",
-    "@mocoding/react-app-basic": "^1.0.0",
-    "@mocoding/eslint-config": "^1.0.0",
     "@mocoding/build-scripts": "^1.0.0",
+    "@mocoding/eslint-config": "^1.0.0",
+    "@mocoding/react-app-basic": "^1.0.0",
+    "@mocoding/react-app-common": "^1.0.0",
     "@mocoding/server": "^1.0.0",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
+    "copy-webpack-plugin": "^6.3.2",
     "cosmiconfig": "^7.0.0",
     "express": "^4.17.1",
-    "copy-webpack-plugin": "^6.3.2",
+    "nodemon-webpack-plugin": "^4.3.2",
+    "webpack-node-externals": "^2.5.2",
     "webpack-dev-middleware": "^4.0.2",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-hot-server-middleware": "^0.6.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.9",
-    "@types/copy-webpack-plugin": "^6.3.0"
+    "@types/copy-webpack-plugin": "^6.3.0",
+    "@types/webpack-node-externals": "^2.5.0"
   }
 }

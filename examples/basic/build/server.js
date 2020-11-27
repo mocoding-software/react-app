@@ -1,11 +1,3 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is not neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
@@ -14,7 +6,23 @@ module.exports =
 /***/ "./src/backend.ts":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nfunction configureWebApp(app) {\r\n    app.get(\"/\", (req, res) => {\r\n        res.send(\"Hello World!\");\r\n    });\r\n}\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureWebApp);\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYmFja2VuZC50cy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovL2Jhc2ljLy4vc3JjL2JhY2tlbmQudHM/MjBkNCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBleHByZXNzIGZyb20gXCJleHByZXNzXCI7XG5cbmZ1bmN0aW9uIGNvbmZpZ3VyZVdlYkFwcChhcHA6IGV4cHJlc3MuRXhwcmVzcykge1xuICBhcHAuZ2V0KFwiL1wiLCAocmVxLCByZXMpID0+IHtcbiAgICByZXMuc2VuZChcIkhlbGxvIFdvcmxkIVwiKTtcbiAgfSk7XG59XG5cbmV4cG9ydCBkZWZhdWx0IGNvbmZpZ3VyZVdlYkFwcDtcbiJdLCJtYXBwaW5ncyI6Ijs7OztBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTsiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/backend.ts\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mocoding_server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@mocoding/server");
+/* harmony import */ var _mocoding_server__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mocoding_server__WEBPACK_IMPORTED_MODULE_0__);
+
+const server = new _mocoding_server__WEBPACK_IMPORTED_MODULE_0__.Server();
+server.app.get("/hello", (req, res) => {
+    res.send("Hello World!");
+});
+server.start();
+
+
+/***/ }),
+
+/***/ "@mocoding/server":
+/***/ ((module) => {
+
+module.exports = require("@mocoding/react-app/lib/dev-server.js");;
 
 /***/ })
 
@@ -44,6 +52,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => module['default'] :
+/******/ 				() => module;
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -79,3 +99,4 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	return __webpack_require__("./src/backend.ts");
 /******/ })()
 ;
+//# sourceMappingURL=server.js.map
