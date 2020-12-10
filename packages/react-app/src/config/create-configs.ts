@@ -112,7 +112,6 @@ export function createConfigs(settings: AppOptions): Configuration[] {
     new CopyPlugin({
       patterns: [
         path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/vendors.js"),
-        path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/vendors.js.map"),
         path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/index.js"),
         path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/index.js.map"),
         //v2: react-app-basic - should be comming from config
