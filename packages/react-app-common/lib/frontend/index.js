@@ -1,11 +1,3 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is not neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("bootstrap"), require("vendors"));
@@ -23,7 +15,18 @@ return /******/ (() => { // webpackBootstrap
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(\"../../node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(\"../../node_modules/react-dom/index.js\");\n/* harmony import */ var injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(\"injected-bootstrap-module\");\n/* harmony import */ var injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__);\n\r\n\r\n\r\nconst context = {};\r\nconst element = document.getElementById(\"app\");\r\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate(react__WEBPACK_IMPORTED_MODULE_0__.createElement(injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__.App, { context: context }), element);\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvZnJvbnRlbmQvaW5kZXgudHN4LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vW25hbWVdLy4vc3JjL2Zyb250ZW5kL2luZGV4LnRzeD80ZDYzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIFJlYWN0IGZyb20gXCJyZWFjdFwiO1xuaW1wb3J0ICogYXMgUmVhY3RET00gZnJvbSBcInJlYWN0LWRvbVwiO1xuLy9pbXBvcnQgbG9hZGFibGUgZnJvbSBcIkBsb2FkYWJsZS9jb21wb25lbnRcIjtcbmltcG9ydCB7IENvbnRleHQgfSBmcm9tIFwiLi4vY29tbW9uXCI7XG5cbi8vIGNvbnN0IEFwcCA9IGxvYWRhYmxlKCgpID0+IGltcG9ydChcImluamVjdGVkLWJvb3RzdHJhcC1tb2R1bGVcIikpO1xuXG5pbXBvcnQgeyBjcmVhdGVDb250ZXh0LCBBcHAgfSBmcm9tIFwiaW5qZWN0ZWQtYm9vdHN0cmFwLW1vZHVsZVwiO1xuXG5jb25zdCBjb250ZXh0OiBDb250ZXh0ID0ge307IC8vY3JlYXRlQ29udGV4dCgpO1xuY29uc3QgZWxlbWVudCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiYXBwXCIpO1xuXG5SZWFjdERPTS5oeWRyYXRlKDxBcHAgY29udGV4dD17Y29udGV4dH0gLz4sIGVsZW1lbnQpO1xuIl0sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFNQTtBQUVBO0FBQ0E7QUFFQTsiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/frontend/index.tsx\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../../node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../../node_modules/react-dom/index.js");
+/* harmony import */ var injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("injected-bootstrap-module");
+/* harmony import */ var injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const context = (0,injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__.createContext)();
+const element = document.getElementById("app");
+react_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate(react__WEBPACK_IMPORTED_MODULE_0__.createElement(injected_bootstrap_module__WEBPACK_IMPORTED_MODULE_2__.App, { context: context }), element);
+
 
 /***/ }),
 
@@ -144,7 +147,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_dll_reference_vendors__;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => "4121fb966fc913855d4c"
+/******/ 		__webpack_require__.h = () => "626365ca20bb9c1d5df7"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -1154,3 +1157,4 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_dll_reference_vendors__;
 /******/ })()
 ;
 });
+//# sourceMappingURL=index.js.map

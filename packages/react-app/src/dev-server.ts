@@ -23,15 +23,14 @@ export class Server extends BaseServer {
 
     const devMiddlewareInstance = devMiddleware(compiler, {
       serverSideRender: true,
-      stats: false,
       writeToDisk: true,
     });
 
     this.app.use(devMiddlewareInstance);
 
-    this.app.use(hotMiddleware(compiler.compilers.find((_) => _.name === "frontend")));
+    this.app.use(hotMiddleware(compiler.compilers.find((_) => _.name === "client")));
 
-    this.app.use(hotServerMiddleware(compiler, { chunkName: "backend" }));
+    // this.app.use(hotServerMiddleware(compiler, { chunkName: "server" }));
 
     // this.app.listen(port, () =>
     //   devMiddlewareInstance.waitUntilValid(() => {

@@ -17,6 +17,8 @@ export function createServerConfig(settings: AppOptions): Configuration {
   const appRoot = path.join(projectRootPath, settings.serverEntry);
   const outputPath = path.join(projectRootPath, settings.outputServerPath);
 
+  //const outputPathClient = path.join(projectRootPath, settings.outputClientPath);
+
   delete process.env.TS_NODE_PROJECT;
 
   const env = settings.production ? "production" : "development";
@@ -33,16 +35,30 @@ export function createServerConfig(settings: AppOptions): Configuration {
   const config = createNodeConfig(server, outputPath, settings.production);
 
   if (!settings.production) {
-    config.externals = [nodeExternals({ additionalModuleDirs: ["../../node_modules"] })];
     config.externals = {
       "@mocoding/server": "@mocoding/react-app/lib/dev-server.js",
     };
-
-    console.log(config.resolve!.alias);
-    process.stdout.write(
-      `Running in development mode. Injecting dev-server and stripping node_modules.\n`,
-    );
+    process.stdout.write(`Injected dev-server.\n`);
   }
+
+  // config.plugins!.push(
+  //   new CopyPlugin({
+  //     patterns: [
+  //       {
+  //         from: path.join(__dirname, "../../../react-app-common/lib/frontend/vendors.js"),
+  //         to: outputPathClient,
+  //       },
+  //       {
+  //         from: path.join(__dirname, "../../../react-app-common/lib/frontend/index.js"),
+  //         to: outputPathClient,
+  //       },
+  //       {
+  //         from: path.join(__dirname, "../../../react-app-basic/lib/bootstrap.js"),
+  //         to: outputPathClient,
+  //       },
+  //     ],
+  //   }),
+  // );
 
   return config;
 

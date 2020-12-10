@@ -8,7 +8,7 @@ function createConfig(env: any, argv: any): webpack.Configuration {
   // const isProd = argv.mode == "production";
 
   let entry: webpack.Entry = {
-    vendors: ["react", "react-dom", "@loadable/component"],
+    vendors: ["react", "react-dom", "react-helmet-async"],
   };
   const config = createWebConfig(entry, __dirname + "/lib/frontend", false);
 

@@ -10,11 +10,11 @@ type WebpackPlugin = (
   | webpack.WebpackPluginInstance
 );
 
-export function createWebConfig(
-  tsConfigLocation: string,
+export function createWebConfig(  
   entry: webpack.Entry,
   outputPath: string,
   isProduction: boolean,
+  tsConfigLocation: string = "tsconfig.json"
 ): webpack.Configuration {
   const plugins: WebpackPlugin[] = [
     new MiniCssExtractPlugin({
@@ -51,7 +51,7 @@ export function createWebConfig(
   }
 
   return {
-    devtool: isProduction ? undefined : "cheap-module-eval-source-map",
+    devtool: isProduction ? undefined : "cheap-module-source-map",
     entry,
     mode: isProduction ? "production" : "development",
     module: { rules },
@@ -74,12 +74,7 @@ export function createWebConfig(
             enforce: true,
             name: "styles",
             test: /\.css$/,
-          },
-          vendors: {
-            chunks: "all",
-            name: "vendors",
-            test: /[\\/]node_modules[\\/]/,
-          },
+          },         
         },
       },
     },

@@ -15,6 +15,7 @@ export class Dll {
   public produce(): webpack.DllPlugin {
     return new webpack.DllPlugin({
       context: path.resolve(__dirname, "../../.."),
+      format: true,
       name: this.dllName,
       path: this.metadataPath,
     });
