@@ -44,3 +44,11 @@ declare module "@mocoding/react-app-common/entry" {
   const HmrProxyEntryModule: React.ComponentType;
   export = HmrProxyEntryModule;
 }
+
+
+declare module "injected-ssr-module" {
+  import { RequestHandler } from "express";
+  type ServerSideRenderingFunc = () => RequestHandler;
+  const render: ServerSideRenderingFunc;
+  export = render;
+}

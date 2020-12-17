@@ -1,11 +1,16 @@
 import * as React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
-import { Context, RenderCallback, RenderFuncProps } from "@mocoding/react-app-common";
-import { HelmetHtml, HelmetHtmlProps } from "@mocoding/react-app-common";
-import { App } from "./app";
-import { createContext } from "./createContext";
+import { Context } from "@mocoding/react-app-common/common";
+import {
+  HelmetHtml,
+  HelmetHtmlProps,
+  RenderCallback,
+  RenderFuncProps,
+  SsrFactory,
+} from "@mocoding/react-app-common/backend";
+import { App, createContext } from "./app";
 
-export function render(callback: RenderCallback, props: RenderFuncProps): void {
+function render(callback: RenderCallback, props: RenderFuncProps): void {
   try {
     const context: Context = createContext();
     context.helmetContext = {}; // init helmet for ssr
@@ -27,3 +32,8 @@ export function render(callback: RenderCallback, props: RenderFuncProps): void {
     callback(error);
   }
 }
+
+const factory = new SsrFactory(render);
+
+const spaMiddleware = factory.middleware;
+export default spaMiddleware;

@@ -1,3 +1,4 @@
+import path from "path";
 import {
   DefaultServerOptions,
   Server as BaseServer,
@@ -6,13 +7,20 @@ import {
 import { DefaultAppOption } from "./cli/options";
 import { createConfigs } from "./config";
 import webpack from "webpack";
+import chalk from "chalk";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const devMiddleware = require("webpack-dev-middleware");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const hotMiddleware = require("webpack-hot-middleware");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const hotServerMiddleware = require("webpack-hot-server-middleware");
+// const hotServerMiddleware = require("./webpack-hot-server-middleware");
+
+function nocache(module: string) {
+  require("fs").watchFile(module, () => {
+    delete require.cache[require.resolve(module)];
+  });
+}
 
 export class Server extends BaseServer {
   constructor(options: ServerOptions = DefaultServerOptions) {
@@ -28,9 +36,19 @@ export class Server extends BaseServer {
 
     this.app.use(devMiddlewareInstance);
 
-    this.app.use(hotMiddleware(compiler.compilers.find((_) => _.name === "client")));
+    this.app.use(hotMiddleware(compiler.compilers[0]));
 
-    // this.app.use(hotServerMiddleware(compiler, { chunkName: "server" }));
+    const projectRootPath = process.cwd();
+
+    const appModule = path.resolve(projectRootPath, "build/app.js");
+    const ssrModule = path.resolve(projectRootPath, "build/ssr.js");
+
+    process.stdout.write(`${chalk.green("Using app module         :")} ${appModule}\n`);
+    process.stdout.write(`${chalk.green("Server Side Rednering    :")} ${ssrModule}\n`);
+
+    nocache(appModule);
+
+    this.app.use(require(ssrModule).default()); //hotServerMiddleware(compiler, { chunkName: "ssr.js" }));
 
     // this.app.listen(port, () =>
     //   devMiddlewareInstance.waitUntilValid(() => {

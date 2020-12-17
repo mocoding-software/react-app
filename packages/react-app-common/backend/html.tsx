@@ -1,7 +1,11 @@
 import * as React from "react";
-import { InlineScript } from "../common/renderFunc";
 import { Body } from "./body";
 import { Head } from "./head";
+
+export interface InlineScript {
+  position: "top" | "bottom";
+  script: string;
+}
 
 export interface HtmlProps {
   assets: string[];

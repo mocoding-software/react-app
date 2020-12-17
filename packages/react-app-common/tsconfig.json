@@ -3,5 +3,5 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "include": ["**/*", "typings.d.ts", "src/frontend/client.tsx", "server.ts"]
+  "include": ["**/*", "typings.d.ts", "frontend/client.tsx", "server.ts"]
 }

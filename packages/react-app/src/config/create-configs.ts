@@ -5,10 +5,11 @@ import { Configuration, Entry } from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { createWebConfig, createNodeConfig, Dll } from "@mocoding/build-scripts";
 import { AppOptions } from "../cli/options";
+import nodeExternals from "webpack-node-externals";
 import chalk from "chalk";
 
 const vendorsDll = new Dll(
-  __dirname + "../../../../react-app-common/lib/frontend",
+  __dirname + "../../../../react-app-basic/lib/frontend",
   "vendors",
   "umd",
 );
@@ -59,7 +60,7 @@ export function createConfigs(settings: AppOptions): Configuration[] {
   process.stdout.write(`${chalk.yellow("Typescript Config   :")} ${tsConfigLocation}\n`);
 
   // client & server
-  const client: Entry = {
+  const appEntry: Entry = {
     app: [appRoot],
   };
 
@@ -69,17 +70,12 @@ export function createConfigs(settings: AppOptions): Configuration[] {
 
   // Creating configs
   const clientConfig = createWebConfig(
-    client,
+    appEntry,
     outputPath,
     settings.production,
     tsConfigLocation,
   );
-  const serverConfig = createNodeConfig(
-    server,
-    outputPathServer,
-    settings.production,
-    tsConfigLocation,
-  );
+  const serverConfig = createNodeConfig(appEntry, outputPathServer, settings.production);
 
   clientConfig.plugins!.push(vendorsDll.consume());
 
@@ -111,17 +107,30 @@ export function createConfigs(settings: AppOptions): Configuration[] {
   clientConfig.plugins!.push(
     new CopyPlugin({
       patterns: [
-        path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/vendors.js"),
-        path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/index.js"),
-        path.resolve(__dirname, nm_root, "react-app-common/lib/frontend/index.js.map"),
         //v2: react-app-basic - should be comming from config
-        path.resolve(__dirname, nm_root, "react-app-basic/lib/bootstrap.js"),
-        path.resolve(__dirname, nm_root, "react-app-basic/lib/bootstrap.js.map"),
+        path.resolve(__dirname, nm_root, "react-app-basic/lib/frontend/vendors.js"),
+        path.resolve(__dirname, nm_root, "react-app-basic/lib/frontend/vendors.js.map"),
+        path.resolve(__dirname, nm_root, "react-app-basic/lib/frontend/index.js"),
+        path.resolve(__dirname, nm_root, "react-app-basic/lib/frontend/index.js.map"),
       ],
     }),
   );
 
-  const configs = [clientConfig]; //, serverConfig];
+  serverConfig.plugins!.push(
+    new CopyPlugin({
+      patterns: [
+        //v2: react-app-basic - should be comming from config
+        {
+          from: path.resolve(__dirname, nm_root, "react-app-basic/lib/backend/index.js"),
+          to: "ssr.js",
+        },
+      ],
+    }),
+  );
+
+  serverConfig.externals = [nodeExternals()];
+
+  const configs = [clientConfig, serverConfig];
 
   // v2: this should be in vendors for development.
   // adding aliases for hot reload

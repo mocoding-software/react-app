@@ -12,6 +12,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "baseUrl": ".",
     "jsx": "react",
     "lib": ["ES2020"]
   }

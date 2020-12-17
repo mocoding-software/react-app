@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Context } from "../common/context";
-import { InlineScript } from "../common/renderFunc";
-import { Html } from "./html";
+import { Html, InlineScript } from "./html";
 
 export interface HelmetHtmlProps {
   assets: string[];

@@ -1,12 +1,16 @@
 import * as React from "react";
-import { HelmetWrapper } from "@mocoding/react-app-common/src/components/helmet-wrapper";
-import { AppProps } from "@mocoding/react-app-common/src/common";
+import { HelmetWrapper, AppProps, Context } from "@mocoding/react-app-common/common";
+import { App as InjectedApp } from "injected-app-entry";
+
+export function createContext(): Context {
+  return {};
+}
 
 export class App extends React.Component<AppProps> {
   public render(): React.ReactNode {
     return (
       <HelmetWrapper helmetContext={this.props.context.helmetContext}>
-        Application should go there.
+        <InjectedApp />
       </HelmetWrapper>
     );
   }
