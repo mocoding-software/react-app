@@ -24,7 +24,7 @@ export interface RedirectResult {
 export declare type RenderResult = RenderHtmlResult | RedirectResult;
 
 export class SsrFactory {
-  protected handler: RequestHandler;
+  public handler: RequestHandler;
   constructor(protected renderFunc: RenderFunc) {
     this.handler = (req: Request, res: Response, next: NextFunction) => {
       process.stdout.write(`Request ${req.originalUrl}\n`);
@@ -55,10 +55,5 @@ export class SsrFactory {
       };
       renderFunc(callback, props);
     };
-  }
-
-  @boundMethod
-  public middleware(): RequestHandler {
-    return this.handler;
   }
 }

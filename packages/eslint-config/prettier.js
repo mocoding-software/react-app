@@ -6,6 +6,7 @@ module.exports = {
   trailingComma: "all",
   noSemi: true,
   bracketSpacing: true,
+  endOfLine: "auto",
   overrides: [
     {
       files: "*.ts",

@@ -12,8 +12,6 @@
   "license": "MIT",
   "main": "index.ts",
   "scripts": {
-    "build": "webpack --progress --stats",
-    "build:vendors": "webpack --config webpack.config.vendors.ts --progress --stats",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "devDependencies": {

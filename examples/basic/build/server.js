@@ -22,7 +22,7 @@ server.start();
 /***/ "@mocoding/server":
 /***/ ((module) => {
 
-module.exports = require("@mocoding/react-app/lib/dev-server.js");;
+module.exports = require("@mocoding/react-app/lib/development/server.js");;
 
 /***/ })
 

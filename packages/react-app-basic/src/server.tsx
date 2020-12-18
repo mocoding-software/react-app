@@ -35,5 +35,5 @@ function render(callback: RenderCallback, props: RenderFuncProps): void {
 
 const factory = new SsrFactory(render);
 
-const spaMiddleware = factory.middleware;
+const spaMiddleware = factory.handler;
 export default spaMiddleware;

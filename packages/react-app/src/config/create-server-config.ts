@@ -36,7 +36,7 @@ export function createServerConfig(settings: AppOptions): Configuration {
 
   if (!settings.production) {
     config.externals = {
-      "@mocoding/server": "@mocoding/react-app/lib/dev-server.js",      
+      "@mocoding/server": "@mocoding/react-app/lib/development/server.js",
     };
     process.stdout.write(`Injected dev-server.\n`);
   }
